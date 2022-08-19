@@ -35,6 +35,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 eval "$(fnm env --use-on-cd)"
 
+# environment
 export EDITOR=lvim
 export VISUAL=$EDITOR
 export BAT_THEME="Nord"
@@ -45,3 +46,23 @@ export PATH=$PATH:~/.local/bin:~/bin:~/.cargo/bin
 # keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# aliases
+
+alias la="ls -alh"
+
+alias ga="git add"
+alias gap="git add -p"
+alias gc="git commit"
+alias gca="git commit --amend"
+alias gcan="git commit --amend --no-edit"
+alias gcan!="git commit --amend --no-edit --no-verify"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gcm="git checkout master"
+alias grb="git rebase"
+alias grbm="git rebase master"
+alias grbi="git rebase -i"
+alias gps="git push"
+alias gpsf="git push --force-with-lease"
+alias gp="git pull"
