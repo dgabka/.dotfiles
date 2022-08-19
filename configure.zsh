@@ -2,8 +2,10 @@
 
 set -ex
 
+# load antidote
+source ~/.antidote/antidote.zsh
+
 # node extras
-fnm completions --shell zsh
 npm i -g yarn
 
 # rust extras
