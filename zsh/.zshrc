@@ -43,5 +43,5 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 export PATH=$PATH:~/.local/bin:~/bin:~/.cargo/bin
 
 # keybindings
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
