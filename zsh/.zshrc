@@ -51,6 +51,8 @@ bindkey -v
 # aliases
 
 alias la="ls -alh"
+alias nvim="lvim"
+alias vim="lvim"
 
 alias ga="git add"
 alias gap="git add -p"

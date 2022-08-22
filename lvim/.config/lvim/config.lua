@@ -179,6 +179,9 @@ lvim.plugins = {
 		end,
 		ft = { "rust", "rs" },
 	},
+	{
+		"christoomey/vim-tmux-navigator",
+	},
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)

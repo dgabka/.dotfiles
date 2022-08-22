@@ -16,3 +16,8 @@ cargo install shellharden
 [ -d ~/.config/lvim ] && rm -rf ~/.config/lvim
 stow lvim
 lvim --headless +PackerSync +q
+
+# init tmux
+stow tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux source ~/.tmux.conf
