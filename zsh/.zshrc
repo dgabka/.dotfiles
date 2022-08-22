@@ -46,6 +46,7 @@ export PATH=$PATH:~/.local/bin:~/bin:~/.cargo/bin
 # keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey -v
 
 # aliases
 
