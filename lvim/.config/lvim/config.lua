@@ -137,6 +137,9 @@ formatters.setup({
 	{
 		command = "shellharden",
 	},
+	{
+		command = "rustfmt",
+	},
 })
 
 -- -- set additional linters
@@ -165,7 +168,6 @@ lvim.plugins = {
 			require("rust-tools").setup({
 				tools = {
 					autoSetHints = true,
-					hover_with_actions = true,
 					runnables = {
 						use_telescope = true,
 					},
