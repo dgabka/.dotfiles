@@ -38,7 +38,7 @@ eval "$(fnm env --use-on-cd)"
 # environment
 export EDITOR=lvim
 export VISUAL=$EDITOR
-export BAT_THEME="Nord"
+export BAT_THEME="Enki-Tokyo-Night"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 
 export PATH=$PATH:~/.local/bin:~/bin:~/.cargo/bin
