@@ -1,22 +1,45 @@
 #!/bin/bash
 
-set -e -x
+set -x
 
 # install homebrew
-[ ! -x "$(command -v brew)" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [ ! -x "$(command -v brew)" ]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  brew update
+  brew upgrade
+fi
+
+brew_packages=(
+  "bat"
+  "fnm"
+  "fzf"
+  "htop"
+  "jq"
+  "lazygit"
+  "nvim"
+  "ripgrep"
+  "rustup"
+  "shellcheck"
+  "stow"
+  "stylua"
+  "tmux"
+  "tree-sitter"
+  "zsh"
+)
 
 # install dependencies
-brew install tmux nvim fnm lazygit ripgrep fzf bat jq rustup stylua tree-sitter stow shellcheck zsh
+brew install "${brew_packages[*]}"
 
 # init shell
 [ -f ~/.zshrc ] && rm ~/.zshrc
-stow zsh
-stow p10k
+[ -f ~/.p10k.zsh ] && rm ~/.p10k.zsh
+stow zsh p10k
 zsh_location="$(which zsh)"
 if ! grep -q "$zsh_location" "/etc/shells"; then
   echo "$zsh_location" | sudo tee -a /etc/shells
 fi
-sudo chsh -s "$(which zsh)" "$USER"
+sudo chsh -s "$zsh_location" "$USER"
 [ ! -d ~/.antidote ] && git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
 
 # node

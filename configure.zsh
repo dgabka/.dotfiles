@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-set -ex
+set -x
 
 # load antidote
 source ~/.antidote/antidote.zsh
