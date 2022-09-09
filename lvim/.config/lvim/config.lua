@@ -163,21 +163,70 @@ lvim.plugins = {
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
-			local lsp_installer_servers = require("nvim-lsp-installer.servers")
-			local _, requested_server = lsp_installer_servers.get_server("rust_analyzer")
-			require("rust-tools").setup({
+			local status_ok, rust_tools = pcall(require, "rust-tools")
+			if not status_ok then
+				return
+			end
+
+			local opts = {
 				tools = {
-					autoSetHints = true,
-					runnables = {
-						use_telescope = true,
+					executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
+					reload_workspace_from_cargo_toml = true,
+					inlay_hints = {
+						auto = true,
+						only_current_line = false,
+						show_parameter_hints = true,
+						parameter_hints_prefix = "<-",
+						other_hints_prefix = "=>",
+						max_len_align = false,
+						max_len_align_padding = 1,
+						right_align = false,
+						right_align_padding = 7,
+						highlight = "Comment",
+					},
+					hover_actions = {
+						border = {
+							{ "╭", "FloatBorder" },
+							{ "─", "FloatBorder" },
+							{ "╮", "FloatBorder" },
+							{ "│", "FloatBorder" },
+							{ "╯", "FloatBorder" },
+							{ "─", "FloatBorder" },
+							{ "╰", "FloatBorder" },
+							{ "│", "FloatBorder" },
+						},
+						auto_focus = true,
 					},
 				},
 				server = {
-					cmd_env = requested_server._default_options.cmd_env,
 					on_attach = require("lvim.lsp").common_on_attach,
 					on_init = require("lvim.lsp").common_on_init,
+					settings = {
+						["rust-analyzer"] = {
+							checkOnSave = {
+								command = "clippy",
+							},
+						},
+					},
 				},
-			})
+			}
+			local path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/") or ""
+			local codelldb_path = path .. "adapter/codelldb"
+			local liblldb_path = path .. "lldb/lib/liblldb.so"
+
+			if vim.fn.filereadable(codelldb_path) and vim.fn.filereadable(liblldb_path) then
+				opts.dap = {
+					adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+				}
+			else
+				local msg = "Either codelldb or liblldb is not readable."
+					.. "\n codelldb: "
+					.. codelldb_path
+					.. "\n liblldb: "
+					.. liblldb_path
+				vim.notify(msg, vim.log.levels.ERROR)
+			end
+			rust_tools.setup(opts)
 		end,
 		ft = { "rust", "rs" },
 	},
