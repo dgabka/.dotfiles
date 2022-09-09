@@ -21,3 +21,6 @@ lvim --headless +PackerSync +q
 stow tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux source ~/.tmux.conf
+
+# init bat
+stow bat

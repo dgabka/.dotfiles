@@ -11,8 +11,10 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "tokyonight"
-vim.g.tokyonight_style = "storm"
+-- lvim.colorscheme = "tokyonight"
+-- vim.g.tokyonight_style = "storm"
+lvim.colorscheme = "catppuccin"
+vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 lvim.transparent_window = true
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -155,11 +157,12 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyz
 
 -- Additional Plugins
 lvim.plugins = {
-	{ "folke/tokyonight.nvim" },
+	-- { "folke/tokyonight.nvim" },
 	{
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
 	},
+	{ "catppuccin/nvim", as = "catppuccin" },
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
