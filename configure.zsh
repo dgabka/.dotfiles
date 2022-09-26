@@ -24,3 +24,4 @@ tmux source ~/.tmux.conf
 
 # init bat
 stow bat
+bat cache --build

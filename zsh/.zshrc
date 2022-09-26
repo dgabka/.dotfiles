@@ -33,7 +33,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 
-eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd)" &> /dev/null
 
 # environment
 export EDITOR=lvim
@@ -77,3 +77,5 @@ alias gst="git status"
 alias glol="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'"
 alias glols="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat"
 alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
