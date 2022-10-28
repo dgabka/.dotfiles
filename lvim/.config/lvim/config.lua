@@ -151,6 +151,12 @@ linters.setup({
 		command = "shellcheck",
 		extra_args = { "--severity", "warning" },
 	},
+	{
+		command = "jsonlint",
+	},
+	{
+		command = "eslint",
+	},
 })
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
