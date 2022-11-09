@@ -11,10 +11,12 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
+vim.opt.timeoutlen = 50
+vim.opt.termguicolors = true
+vim.opt.cursorline = false
 -- lvim.colorscheme = "tokyonight"
 -- vim.g.tokyonight_style = "storm"
 lvim.colorscheme = "catppuccin"
-vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 lvim.transparent_window = true
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -23,6 +25,8 @@ lvim.transparent_window = true
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<S-L>"] = "<cmd>BufferLineCycleNext<cr>"
+lvim.keys.normal_mode["<S-H>"] = "<cmd>BufferLineCyclePrev<cr>"
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -47,7 +51,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- }
 
 -- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["t"] = {
 	name = "+Trouble",
 	r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -55,17 +59,17 @@ lvim.builtin.which_key.mappings["t"] = {
 	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
 	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
 	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
+	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.lsp.diagnostics.virtual_text = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -149,6 +153,12 @@ local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
 	{
 		command = "shellcheck",
+		filetypes = {
+			"sh",
+			"shell",
+			"bash",
+			"zsh",
+		},
 		extra_args = { "--severity", "warning" },
 	},
 	{
@@ -159,6 +169,16 @@ linters.setup({
 	},
 })
 
+-- set additional code actions
+local code_actions = require("lvim.lsp.null-ls.code_actions")
+code_actions.setup({
+	{
+		exe = "eslint",
+		filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "vue" },
+	},
+})
+
+---@diagnostic disable-next-line: missing-parameter
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 
 -- Additional Plugins
@@ -168,7 +188,16 @@ lvim.plugins = {
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
 	},
-	{ "catppuccin/nvim", as = "catppuccin" },
+	{
+		"catppuccin/nvim",
+		as = "catppuccin",
+		config = function()
+			require("catppuccin").setup({
+				flavour = "macchiato", -- mocha, macchiato, frappe, latte
+			})
+			vim.api.nvim_command("colorscheme catppuccin")
+		end,
+	},
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
@@ -261,10 +290,10 @@ lvim.plugins = {
 --   -- enable wrap mode for json files only
 --   command = "setlocal wrap",
 -- })
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "zsh",
---   callback = function()
---     -- let treesitter use bash highlight for zsh files as well
---     require("nvim-treesitter.highlight").attach(0, "bash")
---   end,
--- })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "zsh",
+	callback = function()
+		-- let treesitter use bash highlight for zsh files as well
+		require("nvim-treesitter.highlight").attach(0, "bash")
+	end,
+})
