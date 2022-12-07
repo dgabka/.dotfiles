@@ -12,13 +12,11 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 vim.opt.timeoutlen = 50
-vim.opt.termguicolors = true
 vim.opt.cursorline = false
 vim.opt.hidden = true
 -- lvim.colorscheme = "tokyonight"
 -- vim.g.tokyonight_style = "storm"
-lvim.colorscheme = "catppuccin"
-lvim.transparent_window = true
+lvim.colorscheme = "catppuccin-frappe"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -53,15 +51,15 @@ lvim.keys.normal_mode["<S-H>"] = "<cmd>BufferLineCyclePrev<cr>"
 
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["t"] = {
-	name = "+Trouble",
-	r = { "<cmd>Trouble lsp_references<cr>", "References" },
-	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
-}
+-- lvim.builtin.which_key.mappings["t"] = {
+-- 	name = "+Trouble",
+-- 	r = { "<cmd>Trouble lsp_references<cr>", "References" },
+-- 	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+-- 	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+-- 	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+-- 	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+-- 	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+-- }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -165,9 +163,6 @@ linters.setup({
 	{
 		command = "jsonlint",
 	},
-	{
-		command = "eslint",
-	},
 })
 
 -- set additional code actions
@@ -181,23 +176,6 @@ linters.setup({
 
 ---@diagnostic disable-next-line: missing-parameter
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
-
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver" })
-
-local capabilities = require("lvim.lsp").common_capabilities()
-
-require("typescript").setup({
-	-- disable_commands = false, -- prevent the plugin from creating Vim commands
-	debug = false, -- enable debug logging for commands
-	go_to_source_definition = {
-		fallback = true, -- fall back to standard LSP definition on failure
-	},
-	server = { -- pass options to lspconfig's setup method
-		on_attach = require("lvim.lsp").common_on_attach,
-		on_init = require("lvim.lsp").common_on_init,
-		capabilities = capabilities,
-	},
-})
 
 local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
 require("dap-vscode-js").setup({
@@ -224,20 +202,9 @@ end
 
 -- Additional Plugins
 lvim.plugins = {
-	-- { "folke/tokyonight.nvim" },
-	{
-		"folke/trouble.nvim",
-		cmd = "TroubleToggle",
-	},
 	{
 		"catppuccin/nvim",
 		as = "catppuccin",
-		config = function()
-			require("catppuccin").setup({
-				flavour = "macchiato", -- mocha, macchiato, frappe, latte
-			})
-			vim.api.nvim_command("colorscheme catppuccin")
-		end,
 	},
 	{
 		"simrat39/rust-tools.nvim",
