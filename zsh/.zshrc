@@ -78,4 +78,9 @@ alias glol="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgre
 alias glols="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat"
 alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+# pnpm
+export PNPM_HOME="/Users/dgabka/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
