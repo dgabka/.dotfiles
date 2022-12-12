@@ -16,7 +16,7 @@ vim.opt.cursorline = false
 vim.opt.hidden = true
 -- lvim.colorscheme = "tokyonight"
 -- vim.g.tokyonight_style = "storm"
-lvim.colorscheme = "catppuccin-frappe"
+lvim.colorscheme = "catppuccin-macchiato"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -156,7 +156,6 @@ linters.setup({
 			"sh",
 			"shell",
 			"bash",
-			"zsh",
 		},
 		extra_args = { "--severity", "warning" },
 	},
@@ -190,12 +189,35 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 		{
 			type = "pwa-node",
 			request = "launch",
-			name = "Debug Jest Tests",
-			-- trace = true, -- include debugger info
-			runtimeExecutable = "node",
-			runtimeArgs = { "--inspect", "${file}" },
+			name = "Launch file",
+			program = "${file}",
+			cwd = "${workspaceFolder}",
+		},
+		{
+			type = "pwa-node",
+			request = "attach",
+			name = "Attach",
+			processId = require("dap.utils").pick_process,
+			cwd = "${workspaceFolder}",
+		},
+
+		{
+			type = "pwa-node",
+			request = "launch",
+			name = "Launch Typescript file",
+			program = "${file}",
+			cwd = "${workspaceFolder}",
+			protocol = "inspector",
 			console = "integratedTerminal",
-			sourceMaps = false,
+			runtimeExecutable = "${workspaceFolder}/node_modules/.bin/ts-node",
+			resolveSourceMapLocations = {
+				"${workspaceFolder}/dist/**/*.js",
+				"${workspaceFolder}/**",
+				"!**/node_modules/**",
+			},
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
+			port = 9229,
+			sourceMaps = true,
 		},
 	}
 end
