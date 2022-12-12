@@ -1,63 +1,33 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#!/bin/zsh
 
-# You can change the names/locations of these if you prefer.
-antidote_dir=~/.antidote
-plugins_txt=~/.zsh_plugins.txt
-static_file=~/.zsh_plugins.zsh
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ] && source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+[ -f "$HOME/.p10k.zsh" ] && source "$HOME/.p10k.zsh"
+[ -f "/usr/local/opt/asdf/libexec/asdf.sh" ] && source "/usr/local/opt/asdf/libexec/asdf.sh"
 
-# Clone antidote if necessary and generate a static plugin file.
-if [[ ! $static_file -nt $plugins_txt ]]; then
-  [[ -e $antidote_dir ]] ||
-    git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
-  (
-    source $antidote_dir/antidote.zsh
-    [[ -e $plugins_txt ]] || touch $plugins_txt
-    antidote bundle <$plugins_txt >$static_file
-  )
-fi
-
-# source the static plugins file
-source $static_file
-
-# cleanup
-unset antidote_dir plugins_file static_file
-
-# theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
-
-eval "$(fnm env --use-on-cd)" &> /dev/null
+# plugins
+plug "romkatv/powerlevel10k"
+plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "hlissner/zsh-autopair"
+plug "zap-zsh/supercharge"
+plug "zap-zsh/vim"
+plug "zap-zsh/fzf"
+plug "zap-zsh/exa"
 
 # environment
+ZSH_THEME="powerlevel10k/powerlevel10k"
 export EDITOR=lvim
 export VISUAL=$EDITOR
 export BAT_THEME="Catppuccin-macchiato"
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
---color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
---color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
-
 export PATH=$PATH:~/.local/bin:~/bin:~/.cargo/bin
-
-# keybindings
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -v
+export PNPM_HOME="/Users/dgabka/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 
 # aliases
-
-alias la="ls -alh"
 alias nvim="lvim"
-alias vim="lvim"
 
+alias gg="lazygit"
 alias ga="git add"
 alias gap="git add -p"
 alias gc="git commit"
@@ -78,9 +48,7 @@ alias glol="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgre
 alias glols="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat"
 alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
 
-. /usr/local/opt/asdf/libexec/asdf.sh
-
-# pnpm
-export PNPM_HOME="/Users/dgabka/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
+# keybinds
+bindkey '^ ' autosuggest-accept
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search

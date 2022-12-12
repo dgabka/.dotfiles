@@ -12,12 +12,14 @@ fi
 
 brew_packages=(
   "bat"
+  "exa"
   "fnm"
   "fzf"
   "htop"
   "jq"
   "lazygit"
   "nvim"
+  "pnpm"
   "ripgrep"
   "rustup"
   "shellcheck"
@@ -40,7 +42,7 @@ if ! grep -q "$zsh_location" "/etc/shells"; then
   echo "$zsh_location" | sudo tee -a /etc/shells
 fi
 sudo chsh -s "$zsh_location" "$USER"
-[ ! -d ~/.antidote ] && git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
+sh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)
 
 # node
 fnm install --lts

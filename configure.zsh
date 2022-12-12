@@ -2,11 +2,8 @@
 
 set -x
 
-# load antidote
-source ~/.antidote/antidote.zsh
-
 # node extras
-npm i -g yarn
+pnpm i -g yarn
 
 # rust extras
 cargo install shellharden
