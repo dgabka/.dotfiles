@@ -118,6 +118,25 @@ require("dap").configurations["typescript"] = {
 		port = 9229,
 		sourceMaps = true,
 	},
+	{
+		type = "pwa-node",
+		request = "launch",
+		name = "Jest",
+		program = "${file}",
+		cwd = "${workspaceFolder}",
+		protocol = "inspector",
+		console = "integratedTerminal",
+		runtimeExecutable = "${workspaceFolder}/node_modules/jest/bin/jest.js",
+runtimeArgs = {'${file}'},
+		resolveSourceMapLocations = {
+			"${workspaceFolder}/dist/**/*.js",
+			"${workspaceFolder}/**",
+			"!**/node_modules/**",
+		},
+		skipFiles = { "<node_internals>/**", "**/node_modules/**" },
+		port = 9229,
+		sourceMaps = true,
+	},
 }
 
 -- Additional Plugins
