@@ -23,6 +23,7 @@ export BAT_THEME="Catppuccin-macchiato"
 export PATH=$PATH:~/.local/bin:~/bin:~/.cargo/bin
 export PNPM_HOME="/Users/dgabka/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+eval $(fnm env)
 
 # aliases
 alias nvim="lvim"
