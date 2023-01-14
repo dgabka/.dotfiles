@@ -43,6 +43,9 @@ if ! grep -q "$zsh_location" "/etc/shells"; then
 fi
 sudo chsh -s "$zsh_location" "$USER"
 sh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)
+git clone https://github.com/catppuccin/zsh-syntax-highlighting.git
+mv zsh-syntax-highlighting ~/.local/share/
+
 
 # node
 fnm install --lts

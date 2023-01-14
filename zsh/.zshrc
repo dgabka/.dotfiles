@@ -1,9 +1,32 @@
 #!/bin/zsh
 
-[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+# instant prompt
 [ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ] && source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-[ -f "$HOME/.p10k.zsh" ] && source "$HOME/.p10k.zsh"
-[ -f "/usr/local/opt/asdf/libexec/asdf.sh" ] && source "/usr/local/opt/asdf/libexec/asdf.sh"
+
+# environment
+ZSH_THEME="powerlevel10k/powerlevel10k"
+export CATPPUCCIN_FLAVOR="macchiato"
+export EDITOR=lvim
+export VISUAL=$EDITOR
+export BAT_THEME="Catppuccin-$CATPPUCCIN_FLAVOR"
+export PATH=$PATH:~/.local/bin:~/bin:~/.cargo/bin
+export PNPM_HOME="/Users/dgabka/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
+eval $(fnm env)
+
+# sourcing stuff
+local ZAP="$HOME/.local/share/zap/zap.zsh"
+[ -f "$ZAP" ] && source "$ZAP"
+local P10K="$HOME/.p10k.zsh"
+[ -f "$P10K" ] && source "$P10K"
+local ASDF="/usr/local/opt/asdf/libexec/asdf.sh"
+[ -f "$ASDF" ] && source "$ASDF"
+local SYNTAX_HL="$HOME/.local/share/zsh-syntax-highlighting/themes/catppuccin_$CATPPUCCIN_FLAVOR-zsh-syntax-highlighting.zsh"
+[ -f "$SYNTAX_HL" ] && source "$SYNTAX_HL"
 
 # plugins
 plug "romkatv/powerlevel10k"
@@ -14,16 +37,6 @@ plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
 plug "zap-zsh/fzf"
 plug "zap-zsh/exa"
-
-# environment
-ZSH_THEME="powerlevel10k/powerlevel10k"
-export EDITOR=lvim
-export VISUAL=$EDITOR
-export BAT_THEME="Catppuccin-macchiato"
-export PATH=$PATH:~/.local/bin:~/bin:~/.cargo/bin
-export PNPM_HOME="/Users/dgabka/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-eval $(fnm env)
 
 # aliases
 alias nvim="lvim"
