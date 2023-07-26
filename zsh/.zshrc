@@ -38,6 +38,17 @@ plug "zap-zsh/vim"
 plug "zap-zsh/fzf"
 plug "zap-zsh/exa"
 
+# environment
+ZSH_THEME="powerlevel10k/powerlevel10k"
+export EDITOR=lvim
+export VISUAL=$EDITOR
+export BAT_THEME="Catppuccin-macchiato"
+export PATH=$PATH:~/.local/bin:~/bin:~/.cargo/bin
+export PNPM_HOME="~/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+eval $(fnm env)
+eval "$(pyenv init -)"
+
 # aliases
 alias nvim="lvim"
 
