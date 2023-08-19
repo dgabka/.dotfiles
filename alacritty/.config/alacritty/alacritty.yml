@@ -11,9 +11,10 @@
 import:
   # uncomment the flavour you want below:
   # - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
-  #  - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
-  - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
+  # - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
+  # - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
   # - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
+  - ~/.config/alacritty/helix-port.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -85,7 +86,7 @@ window:
 #
 # Values for `startup_mode` (macOS only):
 #   - SimpleFullscreen
-#startup_mode: Windowed
+startup_mode: Maximized
 
 # Window title
 #title: Alacritty
@@ -131,15 +132,15 @@ font:
     style: Regular
 
   # Bold font face
-  #bold:
+  bold:
   # Font family
   #
   # If the bold family is not specified, it will fall back to the
   # value specified for the normal font.
-  #family: monospace
+    family: OperatorMono Nerd Font
 
   # The `style` can be specified to pick a specific face.
-  #style: Bold
+    style: Bold
 
   # Italic font face
   italic:
@@ -150,18 +151,18 @@ font:
     family: OperatorMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Regular Italic
+    style: Italic
 
   # Bold italic font face
-  #bold_italic:
+  bold_italic:
   # Font family
   #
   # If the bold italic family is not specified, it will fall back to the
   # value specified for the normal font.
-  #family: monospace
+    family: OperatorMono Nerd Font
 
   # The `style` can be specified to pick a specific face.
-  #style: Bold Italic
+    style: Bold Italic
 
   # Point size
   size: 13.0

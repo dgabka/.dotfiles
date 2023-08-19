@@ -1,0 +1,79 @@
+colors:
+    # Default colors
+    primary:
+        background: "#3b224c" # midnight
+        foreground: "#a4a0e8" # lavender
+        # Bright and dim foreground colors
+        dim_foreground: "#5a5977" # comet
+        bright_foreground: "#dbbfef" # lilac
+
+    # Cursor colors
+    cursor:
+        text: "#3b224c" # midnight
+        cursor: "#a4a0e8" # lavender
+    vi_mode_cursor:
+        text: "#3b224c" # midnight
+        cursor: "#a4a0e8" # lavender
+
+    # Search colors
+    search:
+        matches:
+            foreground: "#3b224c" # midnight
+            background: "#ffffff" # white
+        focused_match:
+            foreground: "#9ff28f" # mint
+            background: "#281733" # revolver
+        footer_bar:
+            foreground: "#3b224c" # midnight
+            background: "#ffffff" # white
+
+    # Keyboard regex hints
+    hints:
+        start:
+            foreground: "#3b224c" # midnight
+            background: "#efba5d" # honey
+        end:
+            foreground: "#3b224c" # midnight
+            background: "#efba5d" # honey
+
+    # Selection colors
+    selection:
+        text: "#3b224c" # midnight
+        background: "#eccdba" # almond
+
+    # Normal colors
+    normal:
+        black: "#281733" # revolver
+        red: "#f47868" # apricot
+        green: "#9ff28f" # mint
+        yellow: "#e8dca0" # chamois
+        blue: "#cccccc" # silver
+        magenta: "#452859" # bossanova
+        cyan: "#679c81" # scirocco
+        white: "#ffffff" # white
+
+    # Bright colors
+    bright:
+        black: "#452859" # bossanova
+        red: "#f47868" # apricot
+        green: "#9ff28f" # mint
+        yellow: "#eccdba" # almond
+        blue: "#cccccc" # silver
+        magenta: "#dbbfef" # lillac
+        cyan: "#679c81" # scirocco
+        white: "#ffffff" # white
+
+    # Dim colors
+    dim:
+        black: "#281733" # revolver
+        red: "#f47868" # apricot
+        green: "#9ff28f" # mint
+        yellow: "#efba5d" # honey
+        blue: "#cccccc" # silver
+        magenta: "#452859" # bossanova
+        cyan: "#679c81" # scirocco
+        white: "#ffffff" # white
+
+    indexed_colors:
+        - { index: 16, color: "#EF9F76" }
+        - { index: 17, color: "#F2D5CF" }
