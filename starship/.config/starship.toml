@@ -1,0 +1,21 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Disable the package module, hiding it from the prompt completely
+[aws]
+disabled = true
+
+[git_branch]
+style = 'bright-purple'
+
+[git_status]
+style = 'yellow'
+
+[directory]
+style = 'blue'
+
+[docker_context]
+disabled = true
