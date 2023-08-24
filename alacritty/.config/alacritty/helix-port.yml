@@ -43,18 +43,18 @@ colors:
 
     # Normal colors
     normal:
-        black: "#281733" # revolver
+        black: "#5a5977" # comet
         red: "#f47868" # apricot
         green: "#9ff28f" # mint
         yellow: "#e8dca0" # chamois
         blue: "#cccccc" # silver
-        magenta: "#452859" # bossanova
+        magenta: "#dbbfef" # lillac
         cyan: "#679c81" # scirocco
         white: "#ffffff" # white
 
     # Bright colors
     bright:
-        black: "#452859" # bossanova
+        black: "#5a5977" # comet
         red: "#f47868" # apricot
         green: "#9ff28f" # mint
         yellow: "#eccdba" # almond

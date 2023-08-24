@@ -19,3 +19,6 @@ style = 'blue'
 
 [docker_context]
 disabled = true
+
+[username]
+disabled = true
