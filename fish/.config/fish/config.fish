@@ -32,3 +32,6 @@ set -U fish_pager_color_prefix        'white' '--bold' '--underline'
 set -U fish_pager_color_progress      'brwhite' '--background=cyan'
 
 starship init fish | source
+
+eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+eval "$(/opt/homebrew/bin/brew shellenv)"
