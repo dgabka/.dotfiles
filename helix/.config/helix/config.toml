@@ -1,10 +1,12 @@
 [editor]
+shell = ["fish", "-c"]
+color-modes = true
 line-number = "relative"
 mouse = false
-bufferline = "multiple"
 
-[keys.normal]
-esc = ["collapse_selection", "keep_primary_selection"]
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "version-control", "file-modification-indicator"]
+right = ["diagnostics", "register", "file-type", "position"]
 
 [editor.cursor-shape]
 insert = "bar"
