@@ -6,9 +6,9 @@ set EDITOR hx
 
 starship init fish | source
 
+# set up homebrew
+set -gx PATH "/opt/homebrew/bin" $PATH
 eval (brew shellenv)
-
-source /usr/local/opt/asdf/libexec/asdf.fish
 
 # tabtab source for packages
 # uninstall by removing these lines
@@ -20,3 +20,7 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# add ~/bin (e.g. rtx)
+set -gx PATH ~/bin $PATH
+~/bin/rtx activate fish | source
