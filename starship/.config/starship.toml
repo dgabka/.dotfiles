@@ -4,23 +4,11 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
-command_timeout = 500
+command_timeout = 1000
 
 # Disable the package module, hiding it from the prompt completely
 [aws]
 disabled = true
 
-[git_branch]
-style = 'bright-purple'
-
-[git_status]
-style = 'yellow'
-
-[directory]
-style = 'blue'
-
 [docker_context]
-disabled = true
-
-[username]
 disabled = true
