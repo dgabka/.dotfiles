@@ -16,13 +16,6 @@ eval (brew shellenv)
 # pnpm
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 
-# pnpm
-set -gx PNPM_HOME "/Users/dgabka/Library/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end
-
 # add ~/bin (e.g. rtx)
 set -gx PATH ~/bin $PATH
 ~/bin/rtx activate fish | source
