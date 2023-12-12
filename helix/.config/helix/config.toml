@@ -1,3 +1,5 @@
+theme = "nord"
+
 [editor]
 shell = ["fish", "-c"]
 color-modes = true
