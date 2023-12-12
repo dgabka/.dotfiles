@@ -3,8 +3,8 @@ if status is-interactive
 end
 
 # environment
-set fzf_fd_opts --hidden --exclude=.git
-set EDITOR hx
+set -gx fzf_fd_opts --hidden --exclude=.git
+set -gx EDITOR hx
 
 starship init fish | source
 
