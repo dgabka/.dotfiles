@@ -70,7 +70,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.90
+  opacity: 1
 
   option_as_alt: OnlyLeft
 
@@ -170,7 +170,7 @@ font:
   # spacing.
   offset:
     x: 0
-    y: 2
+    y: 0
 
 # Glyph offset determines the locations of the glyphs within their cells with
 # the default being at the bottom. Increasing `x` moves the glyph to the
