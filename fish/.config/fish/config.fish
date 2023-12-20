@@ -6,7 +6,7 @@ set -gx FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS'
     --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac
     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
 
-set -gx EDITOR hx
+set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 
@@ -32,3 +32,10 @@ end
 
 abbr glog "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
 abbr gloga "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
+
+# pnpm
+set -gx PNPM_HOME "/Users/dgabka/Library/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end

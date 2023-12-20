@@ -3,3 +3,7 @@ pnpm = "latest"
 node = ["latest", "20"]
 python = "3"
 java = "12"
+rust = "latest"
+haskell = "latest"
+fd = "latest"
+fzf = "latest"
