@@ -15,16 +15,7 @@ function M.config()
   require("telescope").setup {
     defaults = {
       prompt_prefix = icons.ui.Telescope .. " ",
-      selection_caret = icons.ui.Forward .. " ",
-      entry_prefix = "   ",
-      initial_mode = "insert",
-      selection_strategy = "reset",
       path_display = { "smart" },
-      color_devicons = true,
-      set_env = { ["COLORTERM"] = "truecolor" },
-      sorting_strategy = nil,
-      layout_strategy = nil,
-      layout_config = {},
       vimgrep_arguments = {
         "rg",
         "--color=never",
@@ -63,10 +54,21 @@ function M.config()
       },
 
       find_files = {
-        theme = "dropdown",
+        theme = "ivy",
         previewer = false,
       },
-
+      git_files = {
+        theme = "ivy",
+        previewer = false,
+      },
+      help_tags = {
+        layout_strategy = "vertical",
+        layout_config = {
+          height = 0.95,
+          width = 140,
+        }
+
+      },
       buffers = {
         theme = "dropdown",
         previewer = false,
@@ -79,35 +81,6 @@ function M.config()
             ["dd"] = actions.delete_buffer,
           },
         },
-      },
-
-      planets = {
-        show_pluto = true,
-        show_moon = true,
-      },
-
-      colorscheme = {
-        enable_preview = true,
-      },
-
-      lsp_references = {
-        theme = "dropdown",
-        initial_mode = "normal",
-      },
-
-      lsp_definitions = {
-        theme = "dropdown",
-        initial_mode = "normal",
-      },
-
-      lsp_declarations = {
-        theme = "dropdown",
-        initial_mode = "normal",
-      },
-
-      lsp_implementations = {
-        theme = "dropdown",
-        initial_mode = "normal",
       },
     },
     extensions = {

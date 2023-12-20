@@ -1,7 +1,6 @@
 local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  commit = "ce741eb559c924d72e3a67d2189ad3771a231414",
 }
 
 function M.config()
@@ -62,32 +61,31 @@ function M.config()
       C = { "<cmd>Telescope commands<cr>", "Commands" },
     },
 
-    -- g = {
-    --   name = "Git",
-    --   g = { "<cmd>Neogit<cr>", "Neogit" },
-    --   j = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
-    --   k = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
-    --   l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-    --   p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-    --   r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-    --   R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-    --   s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-    --   u = {
-    --     "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-    --     "Undo Stage Hunk",
-    --   },
-    --   o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-    --   b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    --   c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    --   C = {
-    --     "<cmd>Telescope git_bcommits<cr>",
-    --     "Checkout commit(for current file)",
-    --   },
-    --   d = {
-    --     "<cmd>Gitsigns diffthis HEAD<cr>",
-    --     "Git Diff",
-    --   },
-    -- },
+    g = {
+      name = "Git",
+      --   g = { "<cmd>Neogit<cr>", "Neogit" },
+      j = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
+      k = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
+      --   l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+      p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+      --   r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+      --   R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+      --   s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+      --   u = {
+      --     "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+      --     "Undo Stage Hunk",
+      --   },
+      o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+      b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+      --   C = {
+      --     "<cmd>Telescope git_bcommits<cr>",
+      --     "Checkout commit(for current file)",
+      --   },
+      d = {
+        "<cmd>Gitsigns diffthis HEAD<cr>",
+        "Git Diff",
+      },
+    },
 
     l = {
       name = "LSP",
@@ -114,22 +112,6 @@ function M.config()
       },
       e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
     },
-
-    -- t = {
-    --   name = "Tab",
-    --   t = {
-    --     "<cmd>lua require('telescope').extensions['telescope-tabs'].list_tabs(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Tabs'})<cr>",
-    --     "Find Tab",
-    --   },
-    --   a = { "<cmd>$tabnew<cr>", "New Empty Tab" },
-    --   A = { "<cmd>tabnew %<cr>", "New Tab" },
-    --   n = { "<cmd>tabn<cr>", "Next" },
-    --   o = { "<cmd>tabonly<cr>", "Only" },
-    --   p = { "<cmd>tabp<cr>", "Prev" },
-    --   h = { "<cmd>-tabmove<cr>", "Move Left" },
-    --   l = { "<cmd>+tabmove<cr>", "Move Right" },
-    -- },
-
     T = {
       name = "Treesitter",
       i = { ":TSConfigInfo<cr>", "Info" },
@@ -174,8 +156,6 @@ function M.config()
         enabled = true,
         suggestions = 20,
       }, -- use which-key for spelling hints
-      -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-      -- No actual key bindings are created
       presets = {
         operators = false, -- adds help for operators like d, y, ...
         motions = false, -- adds help for motions
@@ -186,42 +166,7 @@ function M.config()
         g = false, -- bindings for prefixed with g
       },
     },
-    popup_mappings = {
-      scroll_down = "<c-d>", -- binding to scroll down inside the popup
-      scroll_up = "<c-u>", -- binding to scroll up inside the popup
-    },
-    window = {
-      border = "rounded", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-      -- padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0,
-    },
-    layout = {
-      height = { min = 4, max = 25 }, -- min and max height of the columns
-      width = { min = 20, max = 50 }, -- min and max width of the columns
-      spacing = 3, -- spacing between columns
-      align = "left", -- align columns left, center or right
-    },
     ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-    show_help = true, -- show help message on the command line when the popup is visible
-    show_keys = true, -- show the currently pressed key and its label as a message in the command line
-    triggers = "auto", -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
-    triggers_blacklist = {
-      -- list of mode / prefixes that should never be hooked by WhichKey
-      -- this is mostly relevant for key maps that start with a native binding
-      -- most people should not need to change this
-      i = { "j", "k" },
-      v = { "j", "k" },
-    },
-    -- disable the WhichKey popup for certain buf types and file types.
-    -- Disabled by default for Telescope
-    disable = {
-      buftypes = {},
-      filetypes = { "TelescopePrompt" },
-    },
   }
 
   which_key.register(mappings, opts)
