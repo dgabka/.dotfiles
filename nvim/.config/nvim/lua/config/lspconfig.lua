@@ -57,7 +57,6 @@ function M.config()
     "yamlls",
     "marksman",
     "dockerls",
-    "hls",
     "metals",
     "rust_analyzer",
   }
