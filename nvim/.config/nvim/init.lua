@@ -1,7 +1,7 @@
 require "config.launch"
 require "config.keymaps"
 require "config.options"
-spec "config.nord"
+spec "config.colorscheme"
 spec "config.treesitter"
 spec "config.gitsigns"
 spec "config.indentline"

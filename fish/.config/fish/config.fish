@@ -1,16 +1,19 @@
+fish_config theme choose "Rosé Pine Moon"
+
 # environment
 set -gx fzf_fd_opts --hidden --exclude=.git
-set -gx FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS'
-    --color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1
-    --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1
-    --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac
-    --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
+set -Ux FZF_DEFAULT_OPTS "
+	--color=fg:#908caa,bg:#232136,hl:#ea9a97
+	--color=fg+:#e0def4,bg+:#393552,hl+:#ea9a97
+	--color=border:#44415a,header:#3e8fb0,gutter:#232136
+	--color=spinner:#f6c177,info:#9ccfd8,separator:#44415a
+	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 
 set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 
-test -r "~/.dir_colors" && eval (dircolors ~/.dir_colors)
+fish_add_path ~/.local/bin
 
 starship init fish | source
 

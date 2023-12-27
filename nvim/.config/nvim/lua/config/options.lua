@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 
-vim.opt.number = true
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "auto:2"
 vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 4
