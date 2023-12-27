@@ -5,24 +5,23 @@ local M = {
 function M.config()
   local diff = {
     "diff",
-    colored = false,
+    colored = true,
   }
 
   require("lualine").setup {
     options = {
-      theme = "nord",
-      component_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
+      theme = "auto",
+      component_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
     },
     sections = {
       lualine_a = { "mode" },
       lualine_b = { "branch" },
-      lualine_c = { diff },
+      lualine_c = { "filename", diff },
       lualine_x = { "diagnostics" },
       lualine_y = { "filetype" },
-      lualine_z = { "progress" },
+      lualine_z = { "searchcount" },
     },
-    extensions = { "quickfix", "man", "fugitive" },
   }
 end
 

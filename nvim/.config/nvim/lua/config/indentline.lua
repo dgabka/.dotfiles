@@ -1,3 +1,4 @@
+local icons = require "config.icons"
 local M = {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
@@ -6,6 +7,9 @@ local M = {
 
 function M.config()
   require("ibl").setup {
+    indent = {
+      char = icons.ui.LineLeft,
+    },
     exclude = {
       filetypes = {
         "help",

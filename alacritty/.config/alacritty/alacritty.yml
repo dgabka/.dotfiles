@@ -47,8 +47,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 0
-    y: 0
+    x: 2
+    y: 1
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -122,10 +122,11 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: OperatorMono Nerd Font
+    # family: OperatorMono Nerd Font
+    family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: ExtraLight
 
   # Bold font face
   bold:
@@ -133,10 +134,11 @@ font:
   #
   # If the bold family is not specified, it will fall back to the
   # value specified for the normal font.
-    family: OperatorMono Nerd Font
+    # family: OperatorMono Nerd Font
+    family: JetBrainsMono Nerd Font Mono
 
   # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: Regular
 
   # Italic font face
   italic:
@@ -144,10 +146,11 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: OperatorMono Nerd Font
+    # family: OperatorMono Nerd Font
+    family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+    style: ExtraLight Italic
 
   # Bold italic font face
   bold_italic:
@@ -155,20 +158,20 @@ font:
   #
   # If the bold italic family is not specified, it will fall back to the
   # value specified for the normal font.
-    family: OperatorMono Nerd Font
+    family: JetBrainsMono Nerd Font Mono
 
   # The `style` can be specified to pick a specific face.
-    style: Bold Italic
+    style: Italic
 
   # Point size
-  size: 15.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   offset:
-    x: 0
-    y: 0
+    x: 2
+    y: 2
 
 # Glyph offset determines the locations of the glyphs within their cells with
 # the default being at the bottom. Increasing `x` moves the glyph to the
