@@ -1,0 +1,44 @@
+import = ["/Users/dgabka/.config/alacritty/rose-pine-moon.toml"]
+
+[cursor]
+blink_interval = 500
+
+[cursor.style]
+blinking = "Always"
+shape = "Block"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Light"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Light Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Thin Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Thin"
+
+[font.offset]
+x = 1
+y = 2
+
+[shell]
+args = ["-l", "-c", "tmux new -As main"]
+program = "/usr/local/bin/fish"
+
+[window]
+decorations = "none"
+dynamic_padding = true
+option_as_alt = "OnlyLeft"
+
+[window.padding]
+x = 2
+y = 1

@@ -1,8 +1,0 @@
-[tools]
-pnpm = "latest"
-node = ["latest", "20"]
-python = "3"
-java = "12"
-rust = "latest"
-fd = "latest"
-fzf = "latest"

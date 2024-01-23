@@ -1,11 +1,19 @@
 local M = {
   "mrcjkb/haskell-tools.nvim",
-  version = "^3", -- Recommended
   ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
   lazy = false,
 }
 
 function M.config()
+  vim.g.haskell_tools = {
+    hls = {
+      settings = {
+        haskell = {
+          formattingProvider = "ormolu",
+        },
+      },
+    },
+  }
   require "haskell-tools"
 
   local ok, telescope = pcall(require, "telescope")

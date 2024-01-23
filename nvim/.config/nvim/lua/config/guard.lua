@@ -10,7 +10,7 @@ function M.config()
 
   ft("lua"):fmt "stylua"
   ft("typescript,javascript,typescriptreact"):fmt "prettier"
-  ft("haskell"):fmt "ormolu"
+  ft("haskell"):fmt "lsp"
 
   require("guard").setup {
     fmt_on_save = true,

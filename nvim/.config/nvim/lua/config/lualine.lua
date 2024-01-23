@@ -10,7 +10,7 @@ function M.config()
 
   require("lualine").setup {
     options = {
-      theme = "auto",
+      theme = "rose-pine-alt",
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
     },
