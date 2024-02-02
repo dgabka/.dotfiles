@@ -1,7 +1,9 @@
 fish_config theme choose "Rosé Pine Moon"
 
+starship init fish | source
+
 # environment
-set -gx fzf_fd_opts --hidden --exclude=.git
+set -gx fzf_fd_opts --hidden --exclude=.git --color=never
 set -Ux FZF_DEFAULT_OPTS "
 	--color=fg:#908caa,bg:#232136,hl:#ea9a97
 	--color=fg+:#e0def4,bg+:#393552,hl+:#ea9a97
@@ -12,31 +14,17 @@ set -Ux FZF_DEFAULT_OPTS "
 set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
+set -gx PNPM_HOME ~/Library/pnpm
 
-fish_add_path ~/.local/bin
+fish_add_path ~/.local/bin 
+fish_add_path ~/.cargo/bin
+fish_add_path $PNPM_HOME
+fish_add_path ~/.cabal/bin
+fish_add_path ~/.ghcup/bin
 
-starship init fish | source
+alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
+alias gloga="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
 
-# set up homebrew
-if command -q brew
-    fish_add_path "/opt/homebrew/bin"
-    eval (brew shellenv)
+if test -f ~/.local/bin/mise
+  ~/.local/bin/mise activate fish | source
 end
-
-# tabtab source for packages
-# pnpm
-[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
-
-abbr glog "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
-abbr gloga "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
-
-# pnpm
-set -gx PNPM_HOME "/Users/dgabka/Library/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end
-
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/dgabka/.ghcup/bin # ghcup-env
-
-~/.local/bin/mise activate fish | source

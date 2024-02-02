@@ -2,7 +2,11 @@
 pnpm = "latest"
 node = ["latest", "20"]
 python = "3"
-java = "12"
-rust = "latest"
+java = "latest"
 fd = "latest"
 fzf = "latest"
+ripgrep = "latest"
+stylua = "latest"
+bat = "latest"
+git = "latest"
+neovim = "nightly"

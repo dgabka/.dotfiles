@@ -57,8 +57,6 @@ function M.config()
     "yamlls",
     "marksman",
     "dockerls",
-    "metals",
-    "rust_analyzer",
   }
 
   local default_diagnostic_config = {
