@@ -66,8 +66,7 @@ function M.config()
         layout_config = {
           height = 0.95,
           width = 140,
-        }
-
+        },
       },
       buffers = {
         theme = "dropdown",
