@@ -5,19 +5,15 @@ local M = {
   dependencies = {
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      event = "VeryLazy",
     },
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
-      event = "VeryLazy",
     },
     {
       "windwp/nvim-ts-autotag",
-      event = "VeryLazy",
     },
     {
       "windwp/nvim-autopairs",
-      event = "InsertEnter",
     },
   },
 }

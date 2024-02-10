@@ -2,7 +2,6 @@ local icons = require "config.icons"
 local M = {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
-  event = "VeryLazy",
 }
 
 function M.config()
