@@ -5,6 +5,12 @@ local M = {
     {
       "folke/neodev.nvim",
     },
+    {
+      "mfussenegger/nvim-dap",
+    },
+    {
+      "rcarriga/nvim-dap-ui",
+    },
   },
 }
 
@@ -117,12 +123,34 @@ function M.config()
       opts = vim.tbl_deep_extend("force", settings, opts)
     end
 
-    if server == "lua_ls" then
-      require("neodev").setup {}
-    end
-
     lspconfig[server].setup(opts)
   end
+
+  require("neodev").setup {
+    library = { plugins = { "nvim-dap-ui" }, types = true },
+  }
+
+  -- TODO: cleanup DAP config, maybe move to a separate file
+  require("dapui").setup()
+
+  local dap, dapui = require "dap", require "dapui"
+  dap.listeners.before.attach.dapui_config = function()
+    dapui.open()
+  end
+  dap.listeners.before.launch.dapui_config = function()
+    dapui.open()
+  end
+  dap.listeners.before.event_terminated.dapui_config = function()
+    dapui.close()
+  end
+  dap.listeners.before.event_exited.dapui_config = function()
+    dapui.close()
+  end
+
+  vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#eb6f92" })
+  vim.api.nvim_set_hl(0, "DapStopped", { fg = "#f6c177" })
+  vim.fn.sign_define("DapBreakpoint", { text = icons.ui.Bug, texthl = "DapBreakpoint" })
+  vim.fn.sign_define("DapStopped", { text = icons.ui.BoldArrowRight, texthl = "DapStopped" })
 end
 
 return M

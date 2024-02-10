@@ -11,6 +11,8 @@ function M.config()
   ft("lua"):fmt "stylua"
   ft("typescript,javascript,typescriptreact"):fmt "prettier"
   ft("haskell"):fmt "lsp"
+  ft("java"):fmt "lsp"
+  ft("rust"):fmt "lsp"
 
   require("guard").setup {
     fmt_on_save = true,
