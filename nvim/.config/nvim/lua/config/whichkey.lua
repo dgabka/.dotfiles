@@ -3,7 +3,7 @@ local M = {
 }
 
 function M.config()
-  local mappings = {
+  local leader_mappings = {
     ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
     ["-"] = { "<cmd>Oil<CR>", "Explorer" },
@@ -28,18 +28,6 @@ function M.config()
       q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
       U = { "<cmd>lua require'dapui'.toggle({reset = true})<cr>", "Toggle UI" },
     },
-    p = {
-      name = "Plugins",
-      i = { "<cmd>Lazy install<cr>", "Install" },
-      s = { "<cmd>Lazy sync<cr>", "Sync" },
-      S = { "<cmd>Lazy clear<cr>", "Status" },
-      c = { "<cmd>Lazy clean<cr>", "Clean" },
-      u = { "<cmd>Lazy update<cr>", "Update" },
-      p = { "<cmd>Lazy profile<cr>", "Profile" },
-      l = { "<cmd>Lazy log<cr>", "Log" },
-      d = { "<cmd>Lazy debug<cr>", "Debug" },
-    },
-
     f = {
       name = "Find",
       b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -62,15 +50,15 @@ function M.config()
       --   g = { "<cmd>Neogit<cr>", "Neogit" },
       j = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
       k = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
-      --   l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+      l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
       p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
       r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
       R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-      --   s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-      --   u = {
-      --     "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-      --     "Undo Stage Hunk",
-      --   },
+      s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+      u = {
+        "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+        "Undo Stage Hunk",
+      },
       o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
       b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
       --   C = {
@@ -82,7 +70,6 @@ function M.config()
         "Git Diff",
       },
     },
-
     l = {
       name = "LSP",
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -90,14 +77,6 @@ function M.config()
       w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
       f = { "<cmd>GuardFmt<cr>", "Format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
-      j = {
-        "<cmd>lua vim.diagnostic.goto_next()<cr>",
-        "Next Diagnostic",
-      },
-      k = {
-        "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-        "Prev Diagnostic",
-      },
       l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
       q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
       r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
@@ -108,19 +87,6 @@ function M.config()
       },
       e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
     },
-    T = {
-      name = "Treesitter",
-      i = { ":TSConfigInfo<cr>", "Info" },
-    },
-  }
-
-  local opts = {
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = true, -- use `nowait` when creating keymaps
   }
 
   -- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
@@ -133,9 +99,29 @@ function M.config()
     },
   }
 
+  local goto_mappings = {
+    D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+    d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+    t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition" },
+    i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
+    r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+  }
+  local leader_opts = {
+    mode = "n", -- NORMAL mode
+    prefix = "<leader>",
+  }
+
   local vopts = {
     mode = "v", -- VISUAL mode
     prefix = "<leader>",
+  }
+
+  local goto_opts = {
+    mode = "n", -- NORMAL mode
+    prefix = "g",
+  }
+
+  local common_opts = {
     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
     silent = true, -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
@@ -165,8 +151,9 @@ function M.config()
     ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
   }
 
-  which_key.register(mappings, opts)
-  which_key.register(vmappings, vopts)
+  which_key.register(leader_mappings, vim.tbl_deep_extend("force", common_opts, leader_opts))
+  which_key.register(goto_mappings, vim.tbl_deep_extend("force", common_opts, goto_opts))
+  which_key.register(vmappings, vim.tbl_deep_extend("force", common_opts, vopts))
 end
 
 return M

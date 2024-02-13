@@ -14,34 +14,6 @@ local M = {
   },
 }
 
-local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-
-  local which_key = require "which-key"
-  local mappings = {
-    D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
-    d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-    i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
-    r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-    l = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Open diagnostic float" },
-  }
-  local which_key_opts = {
-    mode = "n", -- NORMAL mode
-    prefix = "g",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = true, -- use `nowait` when creating keymaps
-  }
-  which_key.register(mappings, which_key_opts)
-end
-
-M.on_attach = function(_, bufnr)
-  lsp_keymaps(bufnr)
-end
-
 function M.common_capabilities()
   local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if status_ok then
@@ -62,6 +34,10 @@ function M.common_capabilities()
 end
 
 function M.config()
+  require("neodev").setup {
+    library = { plugins = { "nvim-dap-ui" }, types = true },
+  }
+
   local lspconfig = require "lspconfig"
   local icons = require "config.icons"
 
@@ -114,7 +90,6 @@ function M.config()
 
   for _, server in pairs(servers) do
     local opts = {
-      on_attach = M.on_attach,
       capabilities = M.common_capabilities(),
     }
 
@@ -125,10 +100,6 @@ function M.config()
 
     lspconfig[server].setup(opts)
   end
-
-  require("neodev").setup {
-    library = { plugins = { "nvim-dap-ui" }, types = true },
-  }
 
   -- TODO: cleanup DAP config, maybe move to a separate file
   require("dapui").setup()
