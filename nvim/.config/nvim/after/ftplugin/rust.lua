@@ -12,10 +12,16 @@ local mappings = {
 local opts = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
   silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true, -- use `nowait` when creating keymaps
 }
 
 which_key.register(mappings, opts)
+
+-- LSP specific keymap
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    which_key.register(mappings, vim.tbl_deep_extend("force", opts, { buffer = args.buf }))
+  end,
+})

@@ -3,30 +3,13 @@ local M = {
 }
 
 function M.config()
-  local leader_mappings = {
+  local common_mappings = {
     ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
     ["-"] = { "<cmd>Oil<CR>", "Explorer" },
     b = {
       name = "Buffers",
       b = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
-    },
-    d = {
-      name = "Debug",
-      t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-      b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
-      c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-      C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
-      d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-      g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-      i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-      o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-      u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-      p = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
-      r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-      s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
-      q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
-      U = { "<cmd>lua require'dapui'.toggle({reset = true})<cr>", "Toggle UI" },
     },
     f = {
       name = "Find",
@@ -70,6 +53,9 @@ function M.config()
         "Git Diff",
       },
     },
+  }
+
+  local lsp_mappings = {
     l = {
       name = "LSP",
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -87,10 +73,25 @@ function M.config()
       },
       e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
     },
+    d = {
+      name = "Debug",
+      t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+      b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+      c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+      C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
+      d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+      g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+      i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+      o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+      u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+      p = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
+      r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+      s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+      q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
+      U = { "<cmd>lua require'dapui'.toggle({reset = true})<cr>", "Toggle UI" },
+    },
   }
 
-  -- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
-  -- see https://neovim.io/doc/user/map.html#:map-cmd
   local vmappings = {
     ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
     l = {
@@ -106,6 +107,7 @@ function M.config()
     i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
     r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
   }
+
   local leader_opts = {
     mode = "n", -- NORMAL mode
     prefix = "<leader>",
@@ -151,9 +153,16 @@ function M.config()
     ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
   }
 
-  which_key.register(leader_mappings, vim.tbl_deep_extend("force", common_opts, leader_opts))
+  which_key.register(common_mappings, vim.tbl_deep_extend("force", common_opts, leader_opts))
   which_key.register(goto_mappings, vim.tbl_deep_extend("force", common_opts, goto_opts))
   which_key.register(vmappings, vim.tbl_deep_extend("force", common_opts, vopts))
+
+  -- LSP specific keymap
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      which_key.register(lsp_mappings, vim.tbl_deep_extend("force", common_opts, leader_opts, { buffer = args.buf }))
+    end,
+  })
 end
 
 return M
