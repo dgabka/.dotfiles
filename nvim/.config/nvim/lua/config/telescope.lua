@@ -2,6 +2,7 @@ local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
+    "nvim-telescope/telescope-ui-select.nvim",
     "nvim-lua/plenary.nvim",
   },
   lazy = true,
@@ -89,8 +90,13 @@ function M.config()
         override_file_sorter = true, -- override the file sorter
         case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
+      ["ui-select"] = require("telescope.themes").get_cursor {
+        previewer = false,
+      },
     },
   }
+
+  require("telescope").load_extension "ui-select"
 end
 
 return M

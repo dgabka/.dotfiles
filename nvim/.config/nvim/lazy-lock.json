@@ -1,7 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "2dbef19461198630b3d7c39f414d09fb07d1fdd2" },
-  "actions-preview.nvim": { "branch": "master", "commit": "dd63df1a4ed0ffe1458945ee50ecb1dd02b605ab" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
   "cmp-nvim-lua": { "branch": "main", "commit": "f12408bdb54c39c23e67cab726264c10db33ada8" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
@@ -31,6 +30,7 @@
   "rose-pine": { "branch": "main", "commit": "9d7474f80afe2f0cfcb4fabfc5451f509d844b85" },
   "rustaceanvim": { "branch": "master", "commit": "4d7cc0cbc0e7bd86ec8fa4214eb67bbf4c81e51d" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
+  "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "master", "commit": "7b5c5f56a21e82fdcfe5b250278b8dfc4b1cbab4" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" }
 }
