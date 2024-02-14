@@ -14,7 +14,7 @@ set -Ux FZF_DEFAULT_OPTS "
 set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
-set -gx PNPM_HOME ~/Library/pnpm
+set -gx PNPM_HOME $HOME/Library/pnpm
 
 fish_add_path ~/.local/bin 
 fish_add_path ~/.cargo/bin
