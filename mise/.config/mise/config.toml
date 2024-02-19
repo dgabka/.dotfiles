@@ -2,7 +2,7 @@
 pnpm = "latest"
 node = ["latest", "20"]
 python = "3"
-java = "latest"
+java = ["latest", "21", "17"]
 fd = "latest"
 fzf = "latest"
 ripgrep = "latest"

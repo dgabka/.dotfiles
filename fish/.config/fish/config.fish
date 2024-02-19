@@ -16,7 +16,7 @@ set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set -gx PNPM_HOME $HOME/Library/pnpm
 
-fish_add_path ~/.local/bin 
+fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 fish_add_path $PNPM_HOME
 fish_add_path ~/.cabal/bin
@@ -26,5 +26,5 @@ alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold 
 alias gloga="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
 
 if test -f ~/.local/bin/mise
-  ~/.local/bin/mise activate fish | source
+    ~/.local/bin/mise activate fish | source
 end
