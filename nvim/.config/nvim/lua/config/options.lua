@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 
 vim.opt.signcolumn = "yes"
 vim.opt.relativenumber = true
+vim.opt.number = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 8

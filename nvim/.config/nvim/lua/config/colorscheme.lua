@@ -1,14 +1,12 @@
 local M = {
   "rose-pine/neovim",
   name = "rose-pine",
-  lazy = false,
-  priority = 1000,
 }
 
 function M.config()
   require("rose-pine").setup {
     variant = "moon",
-    disable_italics = true,
+    disable_italics = false,
 
     highlight_groups = {
       Comment = { italic = true },

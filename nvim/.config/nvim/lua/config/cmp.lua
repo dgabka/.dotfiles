@@ -15,6 +15,13 @@ local M = {
       event = "InsertEnter",
     },
     { "mtoohey31/cmp-fish", ft = "fish", event = "InsertEnter" },
+    {
+      "L3MON4D3/LuaSnip",
+      event = "InsertEnter",
+      dependencies = {
+        "rafamadriz/friendly-snippets",
+      },
+    },
   },
 }
 
@@ -22,7 +29,16 @@ function M.config()
   local cmp = require "cmp"
   local icons = require "config.icons"
 
+  local luasnip = require "luasnip"
+  require("luasnip/loaders/from_vscode").lazy_load()
+  require("luasnip").filetype_extend("typescriptreact", { "html" })
+
   cmp.setup {
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
     mapping = cmp.mapping.preset.insert {
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
