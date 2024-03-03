@@ -1,8 +1,9 @@
 [tools]
 pnpm = "latest"
 node = ["latest", "20"]
-python = "3"
+python = "3.12"
 java = ["latest", "21", "17"]
+gradle = "8.6"
 fd = "latest"
 fzf = "latest"
 ripgrep = "latest"
@@ -12,3 +13,4 @@ git = "latest"
 neovim = "nightly"
 lua = "latest"
 lua-language-server = "latest"
+

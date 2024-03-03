@@ -1,4 +1,6 @@
-local M = { "alexghergh/nvim-tmux-navigation" }
+local M = { "alexghergh/nvim-tmux-navigation", dependencies = {
+  "tpope/vim-obsession",
+} }
 
 function M.config()
   local nvim_tmux_nav = require "nvim-tmux-navigation"

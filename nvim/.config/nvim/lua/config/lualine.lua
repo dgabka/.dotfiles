@@ -20,7 +20,10 @@ function M.config()
       lualine_c = { "filename", diff },
       lualine_x = { "diagnostics" },
       lualine_y = { "filetype" },
-      lualine_z = { "searchcount" },
+      lualine_z = { "ObsessionStatus" },
+    },
+    extentions = {
+      "oil",
     },
   }
 end
