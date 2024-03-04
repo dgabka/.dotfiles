@@ -1,14 +1,7 @@
-local M = {
+return {
   "nvim-lualine/lualine.nvim",
-}
+  opts = {
 
-function M.config()
-  local diff = {
-    "diff",
-    colored = true,
-  }
-
-  require("lualine").setup {
     options = {
       theme = "rose-pine-alt",
       component_separators = { left = "", right = "" },
@@ -17,7 +10,7 @@ function M.config()
     sections = {
       lualine_a = { "mode" },
       lualine_b = { "branch" },
-      lualine_c = { "filename", diff },
+      lualine_c = { "filename", { "diff", colored = true } },
       lualine_x = { "diagnostics" },
       lualine_y = { "filetype" },
       lualine_z = { "ObsessionStatus" },
@@ -25,7 +18,5 @@ function M.config()
     extentions = {
       "oil",
     },
-  }
-end
-
-return M
+  },
+}

@@ -1,7 +1,4 @@
-local M = {
+return {
   "mfussenegger/nvim-jdtls",
   ft = { "java" },
-  lazy = false,
 }
-
-return M

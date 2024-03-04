@@ -1,7 +1,4 @@
-local M = {
+return {
   "mrcjkb/rustaceanvim",
   ft = { "rust" },
-  lazy = false,
 }
-
-return M

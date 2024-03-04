@@ -1,10 +1,7 @@
-local M = {
+return {
   "windwp/nvim-autopairs",
   event = "InsertEnter",
-}
-
-M.config = function()
-  require("nvim-autopairs").setup {
+  opts = {
     map_char = {
       all = "(",
       tex = "{",
@@ -35,7 +32,5 @@ M.config = function()
       highlight = "Search",
       highlight_grey = "Comment",
     },
-  }
-end
-
-return M
+  },
+}
