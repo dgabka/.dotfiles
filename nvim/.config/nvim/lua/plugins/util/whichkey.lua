@@ -51,6 +51,21 @@ return {
           "Git Diff",
         },
       },
+
+      t = {
+        name = "Tabs",
+        a = { ":$tabnew<CR>", "New tab" },
+        c = { ":tabclose<CR>", "Close tab" },
+        o = { ":tabonly<CR>", "Close other tabs" },
+        n = { ":tabn<CR>", "Next tab" },
+        p = { ":tabp<CR>", "Prev tab" },
+        m = {
+          name = "Move",
+          p = { ":-tabmove<CR>", "To previous position" },
+          n = { ":+tabmove<CR>", "To next position" },
+        },
+        r = { ":TabRename ", "Rename tab" },
+      },
     }
 
     local lsp_mappings = {
@@ -101,9 +116,10 @@ return {
     local goto_mappings = {
       D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
       d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-      t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition" },
       i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
       r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+      t = { "<cmd>tabnext<CR>", "Next tab" },
+      T = { "<cmd>tabprevious<CR>", "Previous tab" },
     }
 
     local leader_opts = {

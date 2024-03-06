@@ -23,3 +23,5 @@ vim.diagnostic.config {
   virtual_text = false,
   update_in_insert = true,
 }
+
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,globals,help,tabpages,winsize,terminal"
