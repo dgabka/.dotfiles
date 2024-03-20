@@ -7,7 +7,7 @@ return {
       require("rose-pine").setup {
 
         variant = "moon",
-        disable_italics = false,
+        disable_italics = true,
         dim_inactive_windows = true,
 
         highlight_groups = {

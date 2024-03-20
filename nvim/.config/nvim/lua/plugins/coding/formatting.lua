@@ -18,7 +18,7 @@ return {
       ft("css"):fmt "lsp"
 
       require("guard").setup {
-        fmt_on_save = true,
+        -- fmt_on_save = true,
         lsp_as_default_formatter = false,
       }
     end,

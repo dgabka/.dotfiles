@@ -13,4 +13,5 @@ git = "latest"
 neovim = "nightly"
 lua = "latest"
 lua-language-server = "latest"
+ffmpeg = "latest"
 

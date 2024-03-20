@@ -12,23 +12,23 @@ size = 14.0
 
 [font.bold]
 family = "JetBrainsMono Nerd Font Mono"
-style = "Light"
+style = "Regular"
 
 [font.bold_italic]
 family = "JetBrainsMono Nerd Font Mono"
-style = "Light Italic"
+style = "Italic"
 
 [font.italic]
 family = "JetBrainsMono Nerd Font Mono"
-style = "Thin Italic"
+style = "Light Italic"
 
 [font.normal]
 family = "JetBrainsMono Nerd Font Mono"
-style = "Thin"
+style = "Light"
 
 [font.offset]
-x = 1
-y = 2
+x = 0
+y = 1
 
 [shell]
 args = ["-l", "-c", "tmux new -As main"]

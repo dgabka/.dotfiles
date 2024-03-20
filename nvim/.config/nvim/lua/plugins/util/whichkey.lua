@@ -12,8 +12,8 @@ return {
       f = {
         name = "Find",
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        f = { "<cmd>Telescope git_files<cr>", "Find Git files" },
-        g = { "<cmd>Telescope find_files<cr>", "Find files" },
+        g = { "<cmd>Telescope git_files<cr>", "Find Git files" },
+        f = { "<cmd>Telescope find_files<cr>", "Find files" },
         t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
         s = { "<cmd>Telescope grep_string<cr>", "Find String" },
         h = { "<cmd>Telescope help_tags<cr>", "Help" },
@@ -118,8 +118,6 @@ return {
       d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
       i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
       r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-      t = { "<cmd>tabnext<CR>", "Next tab" },
-      T = { "<cmd>tabprevious<CR>", "Previous tab" },
     }
 
     local leader_opts = {
