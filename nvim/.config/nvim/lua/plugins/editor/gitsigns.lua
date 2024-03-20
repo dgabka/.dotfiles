@@ -1,5 +1,8 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = "BufEnter",
-  cmd = "Gitsigns",
+  -- cmd = "Gitsigns",
+  opts = {
+    auto_attach = true,
+  },
 }
