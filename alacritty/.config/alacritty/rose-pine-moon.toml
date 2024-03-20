@@ -9,8 +9,8 @@ white = "0xe0def4"
 yellow = "0xf6c177"
 
 [colors.cursor]
-cursor = "0x56526e"
-text = "0xe0def4"
+cursor = "#ea9a97"
+text = "#393552"
 
 [colors.hints.end]
 background = "#2a273f"
