@@ -34,14 +34,14 @@ return {
 
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
-            ["<c-d>"] = actions.delete_buffer,
+            -- ["<c-d>"] = actions.delete_buffer,
           },
           n = {
             ["<esc>"] = actions.close,
             ["j"] = actions.move_selection_next,
             ["k"] = actions.move_selection_previous,
             ["q"] = actions.close,
-            ["<c-d>"] = actions.delete_buffer,
+            -- ["<c-d>"] = actions.delete_buffer,
           },
         },
       },
