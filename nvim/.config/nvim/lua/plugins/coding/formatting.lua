@@ -15,7 +15,8 @@ return {
       ft("rust"):fmt "lsp"
       ft("fish"):fmt "fish_indent"
       ft("python"):fmt "black"
-      ft("css"):fmt "lsp"
+      ft("css"):fmt "prettier"
+      ft("html"):fmt "prettier"
 
       require("guard").setup {
         fmt_on_save = false,
