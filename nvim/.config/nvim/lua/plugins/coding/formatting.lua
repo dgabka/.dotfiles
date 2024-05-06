@@ -17,6 +17,10 @@ return {
       ft("python"):fmt "black"
       ft("css"):fmt "prettier"
       ft("html"):fmt "prettier"
+      ft("nix"):fmt({
+    cmd = 'alejandra',
+    stdin = true
+})
 
       require("guard").setup {
         fmt_on_save = false,
