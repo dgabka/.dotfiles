@@ -41,5 +41,25 @@
         }
       ];
     };
+    darwinConfigurations.WHM5006336 = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      pkgs = import nixpkgs {
+        system = "aarch64-darwin";
+        overlays = [
+          inputs.neovim-nightly-overlay.overlay
+        ];
+      };
+      modules = [
+        ./modules/darwin
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.dgabka = ./modules/home;
+          };
+        }
+      ];
+    };
   };
 }
