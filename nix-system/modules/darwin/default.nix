@@ -1,7 +1,8 @@
 {pkgs, ...}: {
+  programs.zsh.enable = true;
   programs.fish.enable = true;
-  environment.shells = [pkgs.fish];
-  environment.loginShell = pkgs.fish;
+  environment.shells = [ pkgs.zsh ];
+  environment.loginShell = pkgs.zsh;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -13,5 +14,5 @@
   system.defaults.NSGlobalDomain.KeyRepeat = 1;
   system.stateVersion = 4;
   users.users.dgabka.home = "/Users/dgabka";
-  users.users.dgabka.shell = pkgs.fish;
+  users.users.dgabka.shell = pkgs.zsh;
 }

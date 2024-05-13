@@ -1,3 +1,0 @@
-inherits = "nord"
-
-"ui.background" = { fg = "foreground" }

@@ -6,7 +6,7 @@
   escapeTime = 10;
   newSession = true;
   sensibleOnTop = true;
-  shell = "${pkgs.fish}/bin/fish";
+  # shell = "${pkgs.fish}/bin/fish";
 
   plugins = with pkgs; [
     tmuxPlugins.sensible

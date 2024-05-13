@@ -1,9 +1,6 @@
 {pkgs, ...}: {
   enable = true;
   settings = {
-    # TODO fix?
-   shell.program = "/etc/profiles/per-user/dgabka/bin/tmux";
-   shell.args = [ "new" "-A" "-s" "main" ];
     cursor.blink_interval = 500;
     cursor.style = {
       blinking = "Always";
@@ -37,6 +34,7 @@
       };
     };
 
+    # Rose Pine Moon
     colors = {
       bright = {
         black = "0x6e6a86";

@@ -4,6 +4,8 @@
   enableBashIntegration = true;
   enableZshIntegration = true;
   tmux.enableShellIntegration = true;
+  changeDirWidgetCommand = "fd --type d";
+  defaultCommand = "fd --type f";
   colors = {
     "fg" = "#908caa";
     "bg" = "#232136";

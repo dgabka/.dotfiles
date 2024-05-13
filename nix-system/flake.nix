@@ -36,9 +36,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.dgabka.imports = [
-              ./modules/home
-            ];
+            users.dgabka = ./modules/home;
           };
         }
       ];
