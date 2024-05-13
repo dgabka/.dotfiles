@@ -12,7 +12,7 @@ return {
       lualine_b = { "branch" },
       lualine_c = { "filename", { "diff", colored = true } },
       lualine_x = { "diagnostics" },
-      lualine_y = { "filetype" },
+      lualine_y = { "filetype", "location" },
       lualine_z = { "ObsessionStatus" },
     },
     extentions = {
