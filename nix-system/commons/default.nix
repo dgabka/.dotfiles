@@ -1,4 +1,4 @@
-({pkgs, ...}: {
+{pkgs, ...}: {
   home.stateVersion = "24.05";
   home.packages = with pkgs; [
     # common tools
@@ -6,6 +6,7 @@
     curl
     pstree
     neovim
+    jq
 
     # language tools, LSPs, formatters, etc...
     tree-sitter
@@ -32,11 +33,9 @@
   programs.fzf = import ./fzf.nix;
   programs.git = {
     enable = true;
-    userEmail = "gabka.daw@gmail.com";
-    userName = "Dawid Gąbka";
   };
   programs.starship = import ./starship.nix;
   programs.alacritty = import ./alacritty.nix {inherit pkgs;};
   programs.tmux = import ./tmux.nix {inherit pkgs;};
   programs.zsh = import ./zsh.nix;
-})
+}

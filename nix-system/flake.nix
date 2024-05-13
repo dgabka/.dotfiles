@@ -30,13 +30,13 @@
         ];
       };
       modules = [
-        ./modules/darwin
+        ./darwin
         home-manager.darwinModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.dgabka = ./modules/home;
+            users.dgabka = ./home;
           };
         }
       ];
@@ -50,13 +50,13 @@
         ];
       };
       modules = [
-        ./modules/darwin
+        ./darwin
         home-manager.darwinModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.dgabka = ./modules/home;
+            users.dgabka = ./work;
           };
         }
       ];

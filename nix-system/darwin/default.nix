@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   programs.zsh.enable = true;
-  programs.fish.enable = true;
   environment.shells = [ pkgs.zsh ];
   environment.loginShell = pkgs.zsh;
   nix.extraOptions = ''
