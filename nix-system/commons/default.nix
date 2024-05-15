@@ -6,6 +6,7 @@
     pstree
     neovim
     jq
+    tree
 
     # language tools, LSPs, formatters, etc...
     tree-sitter
