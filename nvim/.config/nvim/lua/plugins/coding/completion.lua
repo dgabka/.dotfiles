@@ -14,7 +14,6 @@ local M = {
       "hrsh7th/cmp-nvim-lua",
       event = "InsertEnter",
     },
-    { "mtoohey31/cmp-fish", ft = "fish", event = "InsertEnter" },
     {
       "L3MON4D3/LuaSnip",
       event = "InsertEnter",
@@ -76,7 +75,6 @@ function M.config()
         vim_item.kind = string.format("%s %s", icons.kind[vim_item.kind], vim_item.kind)
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
-          fish = "[Fish]",
           path = "[Path]",
         })[entry.source.name]
         return vim_item
@@ -84,7 +82,6 @@ function M.config()
     },
     sources = {
       { name = "nvim_lsp" },
-      { name = "fish" },
       { name = "path" },
     },
     confirm_opts = {
