@@ -6,7 +6,6 @@
   escapeTime = 10;
   newSession = true;
   sensibleOnTop = true;
-  # shell = "${pkgs.fish}/bin/fish";
 
   plugins = with pkgs; [
     tmuxPlugins.sensible
@@ -43,7 +42,7 @@
   ];
 
   extraConfig = ''
-    set-option -sa terminal-overrides ",alacritty:Tc"
+    set -ag terminal-overrides ",alacritty:RGB"
     set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
     set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 

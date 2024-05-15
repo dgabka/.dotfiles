@@ -7,7 +7,19 @@
     awscli2
     kubectl
     kubectx
+    glab
+    fnm
+    colima
   ];
+  programs.zsh.shellAliases = {
+    sports = "cd ~/williamhillplc/sports/";
+  };
+  programs.zsh.initExtra = ''
+    useFnm() {
+      eval $(fnm env);
+      fnm use $1;
+    }
+  '';
   programs.k9s = {
     enable = true;
     settings = {
