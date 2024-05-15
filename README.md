@@ -24,3 +24,8 @@ nix run nix-darwin -- switch --flake ~/.dotfiles/nix-system
 echo "/etc/profiles/per-user/$(whoami)/bin/zsh" | sudo tee -a /etc/shells
 chsh -s "/etc/profiles/per-user/$(whoami)/bin/zsh"
 ```
+
+4. Stow nvim config
+```
+stow nvim
+```

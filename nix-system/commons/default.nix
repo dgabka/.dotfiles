@@ -7,6 +7,7 @@
     neovim
     jq
     tree
+    stow
 
     # language tools, LSPs, formatters, etc...
     nil # nix language server
