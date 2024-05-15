@@ -52,7 +52,7 @@ return {
       "yamlls",
       "marksman",
       "dockerls",
-      "nil_ls"
+      "nil_ls",
     }
 
     local default_diagnostic_config = {

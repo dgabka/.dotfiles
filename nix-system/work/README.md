@@ -23,4 +23,3 @@ eval $(fnm env)
 This will setup fnm in the current shell
 
 Or use `useFnm` function added to shell config
-

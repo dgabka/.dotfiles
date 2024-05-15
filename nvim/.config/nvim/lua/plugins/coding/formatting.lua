@@ -17,14 +17,15 @@ return {
       ft("python"):fmt "black"
       ft("css"):fmt "prettier"
       ft("html"):fmt "prettier"
-      ft("nix"):fmt({
-    cmd = 'alejandra',
-    stdin = true
-})
+      ft("nix"):fmt {
+        cmd = "nixpkgs-fmt",
+        stdin = true,
+      }
+      ft("yaml"):fmt { cmd = "yamlfmt", stdin = true }
 
       require("guard").setup {
         fmt_on_save = false,
-        lsp_as_default_formatter = false,
+        lsp_as_default_formatter = true,
       }
     end,
   },
