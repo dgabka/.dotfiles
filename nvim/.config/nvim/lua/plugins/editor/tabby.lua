@@ -11,7 +11,7 @@ return {
       buf_name = {
         mode = "unique",
       },
-      lualine_theme = "rose-pine-alt"
+      lualine_theme = "rose-pine-alt",
     })
   end,
 }

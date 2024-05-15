@@ -1,1 +1,1 @@
-vim.cmd.runtime({"after/ftplugin/typescript.lua",  bang = true })
+vim.cmd.runtime { "after/ftplugin/typescript.lua", bang = true }
