@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   enable = true;
   autosuggestion.enable = true;
   enableCompletion = true;
   dotDir = ".config/zsh";
-  history.ignorePatterns = [ "rm *" ];
+  history.ignorePatterns = ["rm *"];
   historySubstringSearch.enable = true;
   shellAliases = {
     ls = "ls --color=auto";

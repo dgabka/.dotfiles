@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   enable = true;
   settings = {
     cursor.blink_interval = 500;
@@ -7,7 +7,7 @@
       shape = "Block";
     };
     font.size = 15;
-    font.normal = { family = "JetBrainsMono Nerd Font"; };
+    font.normal = {family = "JetBrainsMono Nerd Font";};
     font.italic = {
       family = "JetBrainsMono Nerd Font";
       style = "Italic";

@@ -18,7 +18,7 @@ return {
       ft("css"):fmt "prettier"
       ft("html"):fmt "prettier"
       ft("nix"):fmt {
-        cmd = "nixpkgs-fmt",
+        cmd = "alejandra",
         stdin = true,
       }
       ft("yaml"):fmt { cmd = "yamlfmt", stdin = true }

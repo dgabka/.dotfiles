@@ -15,51 +15,51 @@
     # NeoVim Nightly
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
-  outputs =
-    inputs @ { nixpkgs
-    , darwin
-    , home-manager
-    , ...
-    }: {
-      darwinConfigurations.Mac = darwin.lib.darwinSystem {
+  outputs = inputs @ {
+    nixpkgs,
+    darwin,
+    home-manager,
+    ...
+  }: {
+    darwinConfigurations.Mac = darwin.lib.darwinSystem {
+      system = "x86_64-darwin";
+      pkgs = import nixpkgs {
         system = "x86_64-darwin";
-        pkgs = import nixpkgs {
-          system = "x86_64-darwin";
-          overlays = [
-            inputs.neovim-nightly-overlay.overlay
-          ];
-        };
-        modules = [
-          ./darwin
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.dgabka = ./home;
-            };
-          }
+        overlays = [
+          inputs.neovim-nightly-overlay.overlay
         ];
       };
-      darwinConfigurations.WHM5006336 = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          overlays = [
-            inputs.neovim-nightly-overlay.overlay
-          ];
-        };
-        modules = [
-          ./darwin
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.dgabka = ./work;
-            };
-          }
-        ];
-      };
+      modules = [
+        ./darwin
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.dgabka = ./home;
+          };
+        }
+      ];
     };
+    darwinConfigurations.WHM5006336 = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      pkgs = import nixpkgs {
+        system = "aarch64-darwin";
+        overlays = [
+          inputs.neovim-nightly-overlay.overlay
+        ];
+      };
+      modules = [
+        ./darwin
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.dgabka = ./work;
+          };
+        }
+      ];
+    };
+  };
 }

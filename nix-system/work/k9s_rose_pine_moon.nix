@@ -68,8 +68,8 @@
     views = {
       charts = {
         bgColor = "default";
-        defaultDialColors = [ "#c4a7e7" "#eb6f92" ];
-        defaultChartColors = [ "#c4a7e7" "#eb6f92" ];
+        defaultDialColors = ["#c4a7e7" "#eb6f92"];
+        defaultChartColors = ["#c4a7e7" "#eb6f92"];
       };
       table = {
         fgColor = "#e0def4";
