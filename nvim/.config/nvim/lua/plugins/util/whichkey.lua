@@ -4,18 +4,18 @@ return {
     local common_mappings = {
       ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
       ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-      ["-"] = { "<cmd>Oil<CR>", "Explorer" },
+      ["-"] = { "<cmd>Ex<CR>", "Explorer" },
       b = {
         name = "Buffers",
         b = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
       },
       f = {
         name = "Find",
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        g = { "<cmd>Telescope git_files<cr>", "Find Git files" },
-        f = { "<cmd>Telescope find_files<cr>", "Find files" },
+        b = { "<cmd>Telescope buffers previewer=false<cr>", "Buffers" },
+        g = { "<cmd>Telescope git_files<cr>", "Git files" },
+        f = { "<cmd>Telescope find_files<cr>", "Files" },
         t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
-        s = { "<cmd>Telescope grep_string<cr>", "Find String" },
+        s = { "<cmd>Telescope grep_string<cr>", "Grep String" },
         h = { "<cmd>Telescope help_tags<cr>", "Help" },
         H = { "<cmd>Telescope highlights<cr>", "Highlights" },
         l = { "<cmd>Telescope resume<cr>", "Last Search" },
@@ -28,7 +28,6 @@ return {
 
       g = {
         name = "Git",
-        --   g = { "<cmd>Neogit<cr>", "Neogit" },
         j = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
         k = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
         l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -42,29 +41,10 @@ return {
         },
         g = { "<cmd>Telescope git_status<cr>", "Status/Diff" },
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        --   C = {
-        --     "<cmd>Telescope git_bcommits<cr>",
-        --     "Checkout commit(for current file)",
-        --   },
         d = {
           "<cmd>Gitsigns diffthis HEAD<cr>",
           "Git Diff",
         },
-      },
-
-      t = {
-        name = "Tabs",
-        a = { ":$tabnew<CR>", "New tab" },
-        c = { ":tabclose<CR>", "Close tab" },
-        o = { ":tabonly<CR>", "Close other tabs" },
-        n = { ":tabn<CR>", "Next tab" },
-        p = { ":tabp<CR>", "Prev tab" },
-        m = {
-          name = "Move",
-          p = { ":-tabmove<CR>", "To previous position" },
-          n = { ":+tabmove<CR>", "To next position" },
-        },
-        r = { ":TabRename ", "Rename tab" },
       },
     }
 
@@ -79,11 +59,6 @@ return {
         l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
         q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-        S = {
-          "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-          "Workspace Symbols",
-        },
         e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
       },
       d = {
@@ -117,7 +92,7 @@ return {
       D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
       d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
       i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
-      r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+      r = { "<cmd>Telescope lsp_references<CR>", "References" },
     }
 
     local leader_opts = {

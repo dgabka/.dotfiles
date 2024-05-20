@@ -6,7 +6,7 @@ return {
     config = function()
       require("rose-pine").setup {
 
-        variant = "moon",
+        variant = "main",
         disable_italics = true,
         dim_inactive_windows = true,
 
@@ -27,7 +27,7 @@ return {
           TelescopePromptBorder = { fg = "surface", bg = "surface" },
         },
       }
-      vim.cmd.colorscheme "rose-pine-moon"
+      vim.cmd.colorscheme "rose-pine"
     end,
   },
 }

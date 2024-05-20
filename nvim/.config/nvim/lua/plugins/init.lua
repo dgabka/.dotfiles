@@ -16,4 +16,5 @@ require("lazy").setup {
   { import = "plugins.editor" },
   { import = "plugins.navigation" },
   { import = "plugins.util" },
+  change_detection = { notify = false },
 }

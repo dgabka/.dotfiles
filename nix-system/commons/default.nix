@@ -26,6 +26,7 @@
     EDITOR = "nvim";
     TERM = "alacritty";
   };
+  home.file.".config/alacritty/rose-pine.toml".source = ./rose-pine.toml;
   programs.fd = {
     enable = true;
     extraOptions = ["--color=never"];

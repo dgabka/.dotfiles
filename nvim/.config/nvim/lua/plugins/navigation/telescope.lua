@@ -56,11 +56,22 @@ return {
 
         find_files = {
           theme = "ivy",
-          previewer = false,
+          previewer = true,
+          layout_config = {
+            height = 0.7,
+          },
         },
         git_files = {
           theme = "ivy",
-          previewer = false,
+          previewer = true,
+          layout_config = {
+            height = 0.7,
+          },
+        },
+        git_status = {
+          layout_config = {
+            preview_width = 0.5,
+          },
         },
         help_tags = {
           layout_strategy = "vertical",
