@@ -1,31 +1,11 @@
+
+
 return {
   "folke/which-key.nvim",
   config = function()
     local common_mappings = {
       ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
       ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-      ["-"] = { "<cmd>Ex<CR>", "Explorer" },
-      b = {
-        name = "Buffers",
-        b = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
-      },
-      f = {
-        name = "Find",
-        b = { "<cmd>Telescope buffers previewer=false<cr>", "Buffers" },
-        g = { "<cmd>Telescope git_files<cr>", "Git files" },
-        f = { "<cmd>Telescope find_files<cr>", "Files" },
-        t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
-        s = { "<cmd>Telescope grep_string<cr>", "Grep String" },
-        h = { "<cmd>Telescope help_tags<cr>", "Help" },
-        H = { "<cmd>Telescope highlights<cr>", "Highlights" },
-        l = { "<cmd>Telescope resume<cr>", "Last Search" },
-        M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
-        R = { "<cmd>Telescope registers<cr>", "Registers" },
-        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        C = { "<cmd>Telescope commands<cr>", "Commands" },
-      },
-
       g = {
         name = "Git",
         j = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },

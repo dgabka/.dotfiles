@@ -1,6 +1,9 @@
 -- Ctrl-C to exit insert mode
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
+vim.keymap.set("n", "<leader>-", ":Ex<CR>")
+
+
 -- LSP specific keymap
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)

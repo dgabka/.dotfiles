@@ -1,3 +1,6 @@
+-- We cache the results of "git rev-parse"
+local is_inside_work_tree = {}
+
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
@@ -5,15 +8,11 @@ return {
     "nvim-telescope/telescope-ui-select.nvim",
     "nvim-lua/plenary.nvim",
   },
-  lazy = true,
+  lazy = false,
   cmd = "Telescope",
   config = function()
-    local icons = require "config.icons"
-    local actions = require "telescope.actions"
-
     require("telescope").setup {
       defaults = {
-        prompt_prefix = icons.ui.Telescope .. " ",
         path_display = { "smart" },
         vimgrep_arguments = {
           "rg",
@@ -25,73 +24,6 @@ return {
           "--smart-case",
           "--hidden",
           "--glob=!.git/",
-        },
-
-        mappings = {
-          i = {
-            ["<C-n>"] = actions.cycle_history_next,
-            ["<C-p>"] = actions.cycle_history_prev,
-
-            ["<C-j>"] = actions.move_selection_next,
-            ["<C-k>"] = actions.move_selection_previous,
-            -- ["<c-d>"] = actions.delete_buffer,
-          },
-          n = {
-            ["<esc>"] = actions.close,
-            ["j"] = actions.move_selection_next,
-            ["k"] = actions.move_selection_previous,
-            ["q"] = actions.close,
-            -- ["<c-d>"] = actions.delete_buffer,
-          },
-        },
-      },
-      pickers = {
-        live_grep = {
-          theme = "dropdown",
-        },
-
-        grep_string = {
-          theme = "dropdown",
-        },
-
-        find_files = {
-          theme = "ivy",
-          previewer = true,
-          layout_config = {
-            height = 0.7,
-          },
-        },
-        git_files = {
-          theme = "ivy",
-          previewer = true,
-          layout_config = {
-            height = 0.7,
-          },
-        },
-        git_status = {
-          layout_config = {
-            preview_width = 0.5,
-          },
-        },
-        help_tags = {
-          layout_strategy = "vertical",
-          layout_config = {
-            height = 0.95,
-            width = 140,
-          },
-        },
-        buffers = {
-          theme = "dropdown",
-          previewer = false,
-          initial_mode = "normal",
-          mappings = {
-            i = {
-              ["<C-d>"] = actions.delete_buffer,
-            },
-            n = {
-              ["dd"] = actions.delete_buffer,
-            },
-          },
         },
       },
       extensions = {
@@ -108,5 +40,22 @@ return {
     }
 
     require("telescope").load_extension "ui-select"
+
+    local builtin = require "telescope.builtin"
+    vim.keymap.set("n", "<leader>ff", function()
+      local cwd = vim.fn.getcwd()
+      if is_inside_work_tree[cwd] == nil then
+        vim.fn.system "git rev-parse --is-inside-work-tree"
+        is_inside_work_tree[cwd] = vim.v.shell_error == 0
+      end
+
+      if is_inside_work_tree[cwd] then
+        builtin.git_files()
+      else
+        builtin.find_files()
+      end
+    end)
+    vim.keymap.set("n", "<leader>fr", builtin.lsp_references)
+    vim.keymap.set("n", "<leader>fg", builtin.grep_string)
   end,
 }

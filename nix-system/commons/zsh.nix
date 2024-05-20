@@ -17,7 +17,16 @@
   syntaxHighlighting = {
     enable = true;
   };
+  initExtraFirst = ''
+    bindkey -v
+  '';
   initExtra = ''
+    function fzf-env-widget {
+      env | cut -d'=' -f1 | fzf --preview "eval 'echo \$'{}"
+    }
+    zle -N fzf-env-widget
+    bindkey "^V" fzf-env-widget
+
     function fzf-grep-widget {
       RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
       INITIAL_QUERY="$1"
