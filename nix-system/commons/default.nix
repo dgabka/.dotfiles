@@ -17,6 +17,7 @@
     yaml-language-server
     yamlfmt
     vscode-langservers-extracted
+    marksman
 
     # dev tools
     devenv
