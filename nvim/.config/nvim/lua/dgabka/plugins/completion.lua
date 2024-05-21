@@ -14,27 +14,15 @@ local M = {
             "hrsh7th/cmp-nvim-lua",
             event = "InsertEnter",
         },
-        {
-            "L3MON4D3/LuaSnip",
-            event = "InsertEnter",
-            dependencies = {
-                "rafamadriz/friendly-snippets",
-            },
-        },
     },
 }
 
 function M.config()
     local cmp = require "cmp"
-
-    local luasnip = require "luasnip"
-    require("luasnip/loaders/from_vscode").lazy_load()
-    require("luasnip").filetype_extend("typescriptreact", { "html" })
-
     cmp.setup {
         snippet = {
             expand = function(args)
-                luasnip.lsp_expand(args.body) -- For `luasnip` users.
+                vim.snippet.expand(args.body)
             end,
         },
         mapping = cmp.mapping.preset.insert {
@@ -49,6 +37,7 @@ function M.config()
         },
         sources = {
             { name = "nvim_lsp" },
+            { name = "nvim_lua" },
             { name = "path" },
         },
         confirm_opts = {
