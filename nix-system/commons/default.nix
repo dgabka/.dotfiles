@@ -17,6 +17,7 @@
     yaml-language-server
     yamlfmt
     vscode-langservers-extracted
+    marksman
 
     # dev tools
     devenv
@@ -26,6 +27,7 @@
     EDITOR = "nvim";
     TERM = "alacritty";
   };
+  home.file.".config/alacritty/rose-pine.toml".source = ./rose-pine.toml;
   programs.fd = {
     enable = true;
     extraOptions = ["--color=never"];
