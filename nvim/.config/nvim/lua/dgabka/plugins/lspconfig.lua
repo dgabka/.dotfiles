@@ -19,6 +19,16 @@ return {
             lspconfig[server].setup {}
         end
 
+        lspconfig.nil_ls.setup {
+            settings = {
+                ["nil"] = {
+                    formatting = {
+                        command = { "alejandra" },
+                    },
+                },
+            },
+        }
+
         lspconfig.lua_ls.setup {
             settings = {
                 Lua = {
