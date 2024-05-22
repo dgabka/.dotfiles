@@ -58,5 +58,6 @@ return {
         vim.keymap.set("n", "<leader>fr", builtin.lsp_references)
         vim.keymap.set("n", "<leader>fg", builtin.grep_string)
         vim.keymap.set("n", "<leader>fd", builtin.diagnostics)
+        vim.keymap.set("n", "<leader>fb", builtin.buffers)
     end,
 }
