@@ -7,19 +7,22 @@
       blinking = "Always";
       shape = "Block";
     };
-    font.size = 15;
-    font.normal = {family = "JetBrainsMono Nerd Font";};
+    font.size = 17;
+    font.normal = {
+      family = "OperatorMono Nerd Font";
+      style = "Light";
+    };
     font.italic = {
-      family = "JetBrainsMono Nerd Font";
-      style = "Italic";
+      family = "OperatorMono Nerd Font";
+      style = "Light Italic";
     };
     font.bold = {
-      family = "JetBrainsMono Nerd Font";
-      style = "Bold";
+      family = "OperatorMono Nerd Font";
+      style = "Regular";
     };
     font.bold_italic = {
-      family = "JetBrainsMono Nerd Font";
-      style = "Bold Italic";
+      family = "OperatorMono Nerd Font";
+      style = "Italic";
     };
     font.offset = {
       x = 0;
@@ -38,57 +41,5 @@
     import = [
       "~/.config/alacritty/rose-pine.toml"
     ];
-
-    # Rose Pine Moon
-    # colors = {
-    #   bright = {
-    #     black = "0x6e6a86";
-    #     blue = "0x9ccfd8";
-    #     cyan = "0xea9a97";
-    #     green = "0x3e8fb0";
-    #     magenta = "0xc4a7e7";
-    #     red = "0xeb6f92";
-    #     white = "0xe0def4";
-    #     yellow = "0xf6c177";
-    #   };
-    #   cursor = {
-    #     cursor = "#ea9a97";
-    #     text = "#393552";
-    #   };
-    #   hints.end = {
-    #     background = "#2a273f";
-    #     foreground = "#6e6a86";
-    #   };
-    #   hints.start = {
-    #     background = "#2a273f";
-    #     foreground = "#908caa";
-    #   };
-    #   line_indicator = {
-    #     background = "None";
-    #     foreground = "None";
-    #   };
-    #   normal = {
-    #     black = "0x393552";
-    #     blue = "0x9ccfd8";
-    #     cyan = "0xea9a97";
-    #     green = "0x3e8fb0";
-    #     magenta = "0xc4a7e7";
-    #     red = "0xeb6f92";
-    #     white = "0xe0def4";
-    #     yellow = "0xf6c177";
-    #   };
-    #   primary = {
-    #     background = "0x232136";
-    #     foreground = "0xe0def4";
-    #   };
-    #   selection = {
-    #     background = "0x44415a";
-    #     text = "0xe0def4";
-    #   };
-    #   vi_mode_cursor = {
-    #     cursor = "0x56526e";
-    #     text = "0xe0def4";
-    #   };
-    # };
   };
 }

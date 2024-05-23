@@ -7,7 +7,7 @@
   '';
   environment.systemPackages = with pkgs; [coreutils];
   fonts.fontDir.enable = true;
-  fonts.fonts = [(pkgs.nerdfonts.override {fonts = ["Meslo" "JetBrainsMono"];})];
+  fonts.fonts = [./fonts];
   services.nix-daemon.enable = true;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 14;
   system.defaults.NSGlobalDomain.KeyRepeat = 1;
