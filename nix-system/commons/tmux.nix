@@ -27,8 +27,6 @@
       plugin = tmuxPlugins.rose-pine;
       extraConfig = ''
         set -g @rose_pine_host 'off' # Enables hostname in the status bar
-        set -g @rose_pine_date_time '%a %d %b, %H:%M' # It accepts the date UNIX command format (man date for info)
-        set -g @rose_pine_user 'on' # Turn on the username component in the statusbar
         set -g @rose_pine_directory 'off' # Turn on the current folder component in the status bar
         set -g @rose_pine_bar_bg_disabled_color_option 'default'
         set -g @rose_pine_variant 'main'
