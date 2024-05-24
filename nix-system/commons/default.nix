@@ -18,9 +18,11 @@
     yamlfmt
     vscode-langservers-extracted
     marksman
+    typescript
 
     # dev tools
     devenv
+    devbox
     nodejs
   ];
   home.sessionVariables = {
