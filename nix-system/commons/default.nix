@@ -24,6 +24,7 @@
     devenv
     devbox
     nodejs
+    pre-commit
   ];
   home.sessionVariables = {
     EDITOR = "nvim";
