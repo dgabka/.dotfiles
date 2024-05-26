@@ -14,6 +14,7 @@
 
     # NeoVim Nightly
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = inputs @ {
     nixpkgs,
@@ -26,7 +27,7 @@
       pkgs = import nixpkgs {
         system = "x86_64-darwin";
         overlays = [
-          inputs.neovim-nightly-overlay.overlay
+          inputs.neovim-nightly-overlay.overlays.default
         ];
       };
       modules = [
@@ -46,7 +47,7 @@
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         overlays = [
-          inputs.neovim-nightly-overlay.overlay
+          inputs.neovim-nightly-overlay.overlays.default
         ];
       };
       modules = [
