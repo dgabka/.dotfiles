@@ -27,7 +27,7 @@
       pkgs = import nixpkgs {
         system = "x86_64-darwin";
         overlays = [
-          inputs.neovim-nightly-overlay.overlays.default
+          # inputs.neovim-nightly-overlay.overlays.default
         ];
       };
       modules = [
@@ -47,7 +47,7 @@
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         overlays = [
-          inputs.neovim-nightly-overlay.overlays.default
+          # inputs.neovim-nightly-overlay.overlays.default
         ];
       };
       modules = [
