@@ -8,10 +8,10 @@ return {
             require("rose-pine").setup {
                 variant = "main",
                 disable_italics = true,
-                dim_inactive_windows = true,
 
                 highlight_groups = {
                     Label = { fg = "pine" },
+                    NormalFloat = { bg = "overlay" },
 
                     ["@field"] = { fg = "text" },
                     ["@variable.member"] = { fg = "text" },
