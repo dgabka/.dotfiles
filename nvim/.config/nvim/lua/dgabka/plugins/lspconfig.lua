@@ -12,7 +12,6 @@ return {
             "yamlls",
             "marksman",
             "dockerls",
-            "nil_ls",
         }
 
         for _, server in pairs(servers) do
