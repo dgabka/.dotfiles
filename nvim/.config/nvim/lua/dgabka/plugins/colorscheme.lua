@@ -24,7 +24,17 @@ return {
 
                     ["@markup.heading"] = { fg = "rose" },
 
-                    TelescopeTitle = { fg = "pine", bold = true },
+                    -- borderless telescope
+                    TelescopeBorder = { fg = "surface", bg = "surface" },
+                    TelescopeNormal = { fg = "subtle", bg = "surface" },
+                    TelescopeSelection = { fg = "text", bg = "highlight_med" },
+                    TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
+                    TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
+                    TelescopeTitle = { fg = "base", bg = "love" },
+                    TelescopePromptTitle = { fg = "base", bg = "pine" },
+                    TelescopePreviewTitle = { fg = "base", bg = "iris" },
+                    TelescopePromptNormal = { fg = "text", bg = "overlay" },
+                    TelescopePromptBorder = { fg = "surface", bg = "overlay" },
                 },
             }
             vim.cmd.colorscheme "rose-pine"
