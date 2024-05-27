@@ -19,6 +19,8 @@
     vscode-langservers-extracted
     marksman
     typescript
+    dockerfile-language-server-nodejs
+    nodePackages_latest.bash-language-server
 
     # dev tools
     devenv
