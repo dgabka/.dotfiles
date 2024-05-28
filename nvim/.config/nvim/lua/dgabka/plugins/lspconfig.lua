@@ -9,7 +9,6 @@ return {
             "pyright",
             "bashls",
             "jsonls",
-            "yamlls",
             "marksman",
             "dockerls",
         }
@@ -17,6 +16,18 @@ return {
         for _, server in pairs(servers) do
             lspconfig[server].setup {}
         end
+
+        lspconfig.yamlls.setup {
+            settings = {
+                yaml = {
+                    format = { enable = true },
+                    schemaStore = { enable = true },
+                },
+            },
+            on_attach = function(client, bufnr)
+                client.server_capabilities.documentFormattingProvider = true
+            end,
+        }
 
         lspconfig.nil_ls.setup {
             settings = {
