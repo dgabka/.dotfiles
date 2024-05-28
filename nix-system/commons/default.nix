@@ -27,6 +27,8 @@
     devbox
     nodejs
     pre-commit
+    colima
+    docker
   ];
   home.sessionVariables = {
     EDITOR = "nvim";
