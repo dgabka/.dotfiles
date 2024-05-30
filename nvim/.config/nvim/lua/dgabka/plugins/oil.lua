@@ -20,6 +20,4 @@ return {
             end,
         },
     },
-    -- Optional dependencies
-    dependencies = { { "nvim-tree/nvim-web-devicons", opts = { color_icons = false } } },
 }

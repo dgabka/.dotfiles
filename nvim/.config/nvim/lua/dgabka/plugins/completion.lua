@@ -1,3 +1,31 @@
+local kind_icons = {
+    Text = "",
+    Method = "󰆧",
+    Function = "󰊕",
+    Constructor = "",
+    Field = "󰇽",
+    Variable = "󰂡",
+    Class = "󰠱",
+    Interface = "",
+    Module = "",
+    Property = "󰜢",
+    Unit = "",
+    Value = "󰎠",
+    Enum = "",
+    Keyword = "󰌋",
+    Snippet = "",
+    Color = "󰏘",
+    File = "󰈙",
+    Reference = "",
+    Folder = "󰉋",
+    EnumMember = "",
+    Constant = "󰏿",
+    Struct = "",
+    Event = "",
+    Operator = "󰆕",
+    TypeParameter = "󰅲",
+}
+
 local M = {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -12,6 +40,10 @@ local M = {
         },
         {
             "hrsh7th/cmp-nvim-lua",
+            event = "InsertEnter",
+        },
+        {
+            "hrsh7th/cmp-nvim-lsp-signature-help",
             event = "InsertEnter",
         },
     },
@@ -39,10 +71,27 @@ function M.config()
             { name = "nvim_lsp" },
             { name = "nvim_lua" },
             { name = "path" },
+            { name = "cmp-nvim-lsp-signature-help" },
         },
         confirm_opts = {
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
+        },
+        formatting = {
+            format = function(entry, vim_item)
+                -- Kind icons
+                vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+                -- Source
+                vim_item.menu = ({
+                    nvim_lsp = "[LSP]",
+                    nvim_lua = "[Lua]",
+                    path = "[Path]",
+                })[entry.source.name]
+                return vim_item
+            end,
+        },
+        window = {
+            documentation = cmp.config.window.bordered(),
         },
     }
 end
