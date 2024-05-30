@@ -9,7 +9,7 @@
     docker_context.disabled = true;
     nix_shell = {
       symbol = "❄️";
-      format = "via [$symbol$name]($style)";
+      format = "via [$symbol$name]($style) ";
       style = "blue";
       heuristic = true;
     };
