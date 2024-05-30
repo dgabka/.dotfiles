@@ -2,7 +2,7 @@
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- open netrw
-vim.keymap.set("n", "<leader>-", ":Ex<CR>")
+vim.keymap.set("n", "<leader>-", ":Oil<CR>")
 
 -- quickfix list
 vim.keymap.set("n", "<leader>co", ":copen<CR>")

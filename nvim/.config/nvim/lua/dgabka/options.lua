@@ -13,6 +13,9 @@ vim.opt.cursorline = true -- highlight the current line
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.smartindent = true -- make indenting smarter again
 vim.opt.updatetime = 100
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.autoread = true
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
