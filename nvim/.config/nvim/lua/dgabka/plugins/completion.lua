@@ -51,6 +51,13 @@ local M = {
 
 function M.config()
     local cmp = require "cmp"
+    vim.keymap.set({ "i", "s" }, "<Tab>", function()
+        if vim.snippet.active { direction = 1 } then
+            return "<cmd>lua vim.snippet.jump(1)<cr>"
+        else
+            return "<Tab>"
+        end
+    end, { expr = true })
     cmp.setup {
         snippet = {
             expand = function(args)
