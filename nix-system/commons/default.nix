@@ -21,10 +21,10 @@
     typescript
     dockerfile-language-server-nodejs
     nodePackages_latest.bash-language-server
+    shellcheck
+    shfmt
 
     # dev tools
-    devenv
-    devbox
     nodejs
     pre-commit
     colima
