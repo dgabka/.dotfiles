@@ -1,4 +1,11 @@
-{
+{pkgs, ...}: let
+  theme = pkgs.fetchFromGitHub {
+    owner = "dgabka";
+    repo = "labyrinth-fzf";
+    rev = "9fe783b027f8c35c04b686ff4cb1a9777e5df73d";
+    sha256 = "sha256-/HJ8XEHoqxfOHmqmCkIuU7KCBqlzsj7reTjo3Fo7UGk=";
+  };
+in {
   enable = true;
   enableBashIntegration = true;
   enableZshIntegration = true;
@@ -7,32 +14,27 @@
   changeDirWidgetOptions = [
     "--height 50%"
     "--preview 'tree -C {} | head -200'"
+    "--border=none"
+    "--preview-window 'border-none'"
+    "--no-separator"
+    "--no-scrollbar"
   ];
   defaultCommand = "fd --type f --hidden";
   defaultOptions = [
-    "--height 40%"
-    "--border"
+    "--height 50%"
+    "--border=none"
+    "--preview-window 'border-none'"
+    "--no-separator"
+    "--no-scrollbar"
   ];
   fileWidgetCommand = "fd --type f --hidden";
   fileWidgetOptions = [
     "--walker-skip .git,node_modules"
     "--preview 'bat -n --color=always {}'"
+    "--preview-window 'border-none'"
+    "--border=none"
+    "--no-separator"
+    "--no-scrollbar"
   ];
-  colors = {
-    "fg" = "#908caa";
-    "bg" = "#191724";
-    "hl" = "#ebbcba";
-    "fg+" = "#e0def4";
-    "bg+" = "#26233a";
-    "hl+" = "#ebbcba";
-    "border" = "#403d52";
-    "header" = "#31748f";
-    "gutter" = "#191724";
-    "spinner" = "#f6c177";
-    "info" = "#9ccfd8";
-    "separator" = "#403d52";
-    "pointer" = "#c4a7e7";
-    "marker" = "#eb6f92";
-    "prompt" = "#908caa";
-  };
+  colors = import "${theme}/dist/labyrinth-mist.nix";
 }

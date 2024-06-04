@@ -1,14 +1,45 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  labyrinth-tmux =
+    pkgs.tmuxPlugins.mkTmuxPlugin
+    {
+      pluginName = "labyrinth-tmux";
+      version = "unstable-2024-01-08";
+      rtpFilePath = "labyrinth.tmux";
+      src = pkgs.fetchFromGitHub {
+        owner = "dgabka";
+        repo = "labyrinth-tmux";
+        rev = "0bcab8a07abdf8d5c56898f0b5c21d741e137ffd";
+        sha256 = "sha256-bvC42ctPyo2o2h5Muh7aHwHhDYb3MOlDEdrVqt+dH74=";
+      };
+    };
+  sensible =
+    pkgs.tmuxPlugins.mkTmuxPlugin
+    {
+      pluginName = "sensible";
+      version = "unstable-2024-01-08";
+      src = pkgs.fetchFromGitHub {
+        owner = "tmux-plugins";
+        repo = "tmux-sensible";
+        rev = "25cb91f42d020f675bb0a2ce3fbd3a5d96119efa";
+        sha256 = "sha256-sw9g1Yzmv2fdZFLJSGhx1tatQ+TtjDYNZI5uny0+5Hg=";
+      };
+      postInstall = ''
+        sed -e 's:reattach-to-user-namespace:${pkgs.reattach-to-user-namespace}/bin/reattach-to-user-namespace:g' -i $target/sensible.tmux
+      '';
+    };
+in {
   enable = true;
   prefix = "C-a";
   terminal = "alacritty";
   clock24 = true;
   escapeTime = 10;
   newSession = true;
-  sensibleOnTop = true;
+  sensibleOnTop = false;
 
   plugins = with pkgs; [
-    tmuxPlugins.sensible
+    {
+      plugin = sensible;
+    }
     {
       plugin = tmuxPlugins.tmux-fzf;
     }
@@ -24,16 +55,12 @@
       '';
     }
     {
-      plugin = tmuxPlugins.rose-pine;
+      plugin = labyrinth-tmux;
       extraConfig = ''
-        set -g @rose_pine_host 'off' # Enables hostname in the status bar
-        set -g @rose_pine_directory 'off' # Turn on the current folder component in the status bar
-        set -g @rose_pine_bar_bg_disabled_color_option 'default'
-        set -g @rose_pine_variant 'main'
-        set -g @rose_pine_disable_active_window_menu 'off'
-        set -g @rose_pine_show_pane_directory 'on'
-        set -g @rose_pine_show_current_program 'off'
-        set -g @rose_pine_window_status_separator " │ "
+        set -g @labyrinth_variant 'mist'
+        set -g @labyrinth_show_pane_directory 'on'
+        set -g @labyrinth_window_status_separator " │ "
+        set -g @labyrinth_date_time '%a %d %b, %H:%M' # It accepts the date UNIX command format (man date for info)
       '';
     }
     tmuxPlugins.yank

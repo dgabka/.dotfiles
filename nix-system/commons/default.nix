@@ -34,7 +34,7 @@
     EDITOR = "nvim";
     TERM = "alacritty";
   };
-  home.file.".config/alacritty/rose-pine.toml".source = ./rose-pine.toml;
+  xdg.enable = true;
   programs.fd = {
     enable = true;
     extraOptions = ["--color=never"];
@@ -55,7 +55,7 @@
     ];
   };
   programs.bat = import ./bat.nix {inherit pkgs;};
-  programs.fzf = import ./fzf.nix;
+  programs.fzf = import ./fzf.nix {inherit pkgs;};
   programs.git = {
     enable = true;
   };
