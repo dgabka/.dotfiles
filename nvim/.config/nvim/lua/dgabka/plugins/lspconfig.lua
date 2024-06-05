@@ -55,9 +55,6 @@ return {
         }
 
         vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-
         vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
-        vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action)
-        vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename)
     end,
 }
