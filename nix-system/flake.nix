@@ -13,13 +13,14 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # NeoVim Nightly
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = inputs @ {
     nixpkgs,
     darwin,
     home-manager,
+    neovim-nightly,
     ...
   }: {
     darwinConfigurations.Mac = darwin.lib.darwinSystem {
@@ -27,7 +28,7 @@
       pkgs = import nixpkgs {
         system = "x86_64-darwin";
         overlays = [
-          # inputs.neovim-nightly-overlay.overlays.default
+          neovim-nightly.overlays.default
         ];
       };
       modules = [
@@ -47,7 +48,7 @@
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         overlays = [
-          # inputs.neovim-nightly-overlay.overlays.default
+          neovim-nightly.overlays.default
         ];
       };
       modules = [
