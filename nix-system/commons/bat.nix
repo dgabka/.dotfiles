@@ -6,12 +6,12 @@
   themes = {
     rose-pine = {
       src = pkgs.fetchFromGitHub {
-        owner = "rose-pine";
-        repo = "tm-theme";
-        rev = "c4235f9a65fd180ac0f5e4396e3a86e21a0884ec";
-        sha256 = "jji8WOKDkzAq8K+uSZAziMULI8Kh7e96cBRimGvIYKY=";
+        owner = "dgabka";
+        repo = "labyrinth-tm-theme";
+        rev = "e88cf8d61640cf564a519f3fb8c86d19c1a84b57";
+        sha256 = "sha256-4R4zr3XiT5ER/JtRhjtX7CpHiGfie4FbaJraXjFrcsI=";
       };
-      file = "dist/themes/rose-pine.tmTheme";
+      file = "dist/labyrinth-mist.tmTheme";
     };
   };
 }
