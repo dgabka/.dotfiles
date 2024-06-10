@@ -7,8 +7,12 @@ end
 vim.diagnostic.config {
     virtual_text = false,
     update_in_insert = true,
+    severity_sort = true,
     float = {
         header = false,
         border = "rounded",
+        style = "minimal",
+        source = "always",
+        prefix = "",
     },
 }

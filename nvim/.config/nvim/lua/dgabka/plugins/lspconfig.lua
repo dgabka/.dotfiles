@@ -1,5 +1,12 @@
 return {
     "neovim/nvim-lspconfig",
+    dependencies = {
+        "b0o/schemastore.nvim",
+        {
+            "folke/lazydev.nvim",
+            ft = "lua", -- only load on lua files
+        },
+    },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         local lspconfig = require "lspconfig"
@@ -8,7 +15,6 @@ return {
             "html",
             "pyright",
             "bashls",
-            "jsonls",
             "marksman",
             "dockerls",
         }
@@ -21,11 +27,21 @@ return {
             lspconfig[server].setup {}
         end
 
+        lspconfig.jsonls.setup {
+            settings = {
+                json = {
+                    schemas = require("schemastore").json.schemas(),
+                    validate = { enable = true },
+                },
+            },
+        }
+
         lspconfig.yamlls.setup {
             settings = {
                 yaml = {
                     format = { enable = true },
                     schemaStore = { enable = true },
+                    schemas = require("schemastore").yaml.schemas(),
                 },
             },
             on_attach = function(client, bufnr)
