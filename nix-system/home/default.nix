@@ -1,6 +1,13 @@
-({pkgs, ...}: {
+({
+  pkgs,
+  labyrinth-variant,
+  ...
+}: {
   imports = [
-    ../commons
+    (import ../commons {
+      inherit pkgs;
+      inherit labyrinth-variant;
+    })
   ];
   home.packages = with pkgs; [
     pre-commit

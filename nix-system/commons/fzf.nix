@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  labyrinth-variant,
+  ...
+}: let
   theme = pkgs.fetchFromGitHub {
     owner = "dgabka";
     repo = "labyrinth-fzf";
@@ -36,5 +40,5 @@ in {
     "--no-separator"
     "--no-scrollbar"
   ];
-  colors = import "${theme}/dist/labyrinth-mist.nix";
+  colors = import "${theme}/dist/labyrinth-${labyrinth-variant}.nix";
 }

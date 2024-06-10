@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  labyrinth-variant,
+  ...
+}: let
   labyrinth = pkgs.fetchFromGitHub {
     owner = "dgabka";
     repo = "labyrinth-alacritty";
@@ -46,7 +50,7 @@ in {
     };
 
     import = [
-      "${labyrinth}/dist/labyrinth-mist.toml"
+      "${labyrinth}/dist/labyrinth-${labyrinth-variant}.toml"
     ];
   };
 }

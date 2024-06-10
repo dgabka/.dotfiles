@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  labyrinth-variant,
+  ...
+}: let
   labyrinth-tmux =
     pkgs.tmuxPlugins.mkTmuxPlugin
     {
@@ -57,7 +61,7 @@ in {
     {
       plugin = labyrinth-tmux;
       extraConfig = ''
-        set -g @labyrinth_variant 'mist'
+        set -g @labyrinth_variant '${labyrinth-variant}'
         set -g @labyrinth_show_pane_directory 'on'
         set -g @labyrinth_window_status_separator " │ "
         set -g @labyrinth_date_time '%a %d %b, %H:%M' # It accepts the date UNIX command format (man date for info)

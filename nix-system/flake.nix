@@ -22,46 +22,60 @@
     home-manager,
     neovim-nightly,
     ...
-  }: {
-    darwinConfigurations.Mac = darwin.lib.darwinSystem {
-      system = "x86_64-darwin";
+  }: let
+    labyrinth-variant = "shade";
+  in {
+    darwinConfigurations.Mac = let
       pkgs = import nixpkgs {
         system = "x86_64-darwin";
         overlays = [
           neovim-nightly.overlays.default
         ];
       };
-      modules = [
-        ./darwin
-        home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.dgabka = ./home;
-          };
-        }
-      ];
-    };
-    darwinConfigurations.WHM5006336 = darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
+    in
+      darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        pkgs = pkgs;
+        modules = [
+          ./darwin
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.dgabka = import ./home {
+                inherit pkgs;
+                inherit labyrinth-variant;
+              };
+            };
+          }
+        ];
+      };
+    darwinConfigurations.WHM5006336 = let
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         overlays = [
           neovim-nightly.overlays.default
         ];
       };
-      modules = [
-        ./darwin
-        home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.dgabka = ./work;
-          };
-        }
-      ];
-    };
+    in
+      darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        pkgs = pkgs;
+        modules = [
+          ./darwin
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.dgabka = import ./work {
+                inherit pkgs;
+                inherit labyrinth-variant;
+              };
+            };
+          }
+        ];
+      };
   };
 }

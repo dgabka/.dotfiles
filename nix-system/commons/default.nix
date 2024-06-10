@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  labyrinth-variant,
+  ...
+}: {
   home.stateVersion = "24.05";
   home.packages = with pkgs; [
     # common tools
@@ -54,13 +58,28 @@
       "--smart-case"
     ];
   };
-  programs.bat = import ./bat.nix {inherit pkgs;};
-  programs.fzf = import ./fzf.nix {inherit pkgs;};
+  programs.bat = import ./bat.nix {
+    inherit pkgs;
+    inherit labyrinth-variant;
+  };
+  programs.fzf = import ./fzf.nix {
+    inherit pkgs;
+    inherit labyrinth-variant;
+  };
   programs.git = {
     enable = true;
   };
   programs.starship = import ./starship.nix;
-  programs.alacritty = import ./alacritty.nix {inherit pkgs;};
-  programs.tmux = import ./tmux.nix {inherit pkgs;};
-  programs.zsh = import ./zsh.nix {inherit pkgs;};
+  programs.alacritty = import ./alacritty.nix {
+    inherit pkgs;
+    inherit labyrinth-variant;
+  };
+  programs.tmux = import ./tmux.nix {
+    inherit pkgs;
+    inherit labyrinth-variant;
+  };
+  programs.zsh = import ./zsh.nix {
+    inherit pkgs;
+    inherit labyrinth-variant;
+  };
 }
