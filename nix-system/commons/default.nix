@@ -31,7 +31,6 @@
     # dev tools
     nodejs
     pre-commit
-    colima
     docker
   ];
   home.sessionVariables = {
@@ -68,6 +67,12 @@
   };
   programs.git = {
     enable = true;
+    aliases = {
+      co = "checkout";
+      s = "status";
+      sw = "switch";
+      rb = "rebase";
+    };
   };
   programs.starship = import ./starship.nix;
   programs.alacritty = import ./alacritty.nix {

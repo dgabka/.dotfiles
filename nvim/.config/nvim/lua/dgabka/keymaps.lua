@@ -1,13 +1,14 @@
 -- Ctrl-C to exit insert mode
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
--- open netrw
+-- open oil
 vim.keymap.set("n", "<leader>-", ":Oil<CR>")
 
 -- quickfix list
 vim.keymap.set("n", "<leader>co", ":copen<CR>")
 vim.keymap.set("n", "<leader>cn", ":cnext<CR>")
 vim.keymap.set("n", "<leader>cp", ":cprev<CR>")
+vim.keymap.set("n", "<leader>cc", ":cclose<CR>")
 
 -- move visual selection up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

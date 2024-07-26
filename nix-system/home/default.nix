@@ -10,7 +10,9 @@
     })
   ];
   home.packages = with pkgs; [
-    pre-commit
     rename
   ];
+  programs.zsh.initExtra = ''
+    PATH=$HOME/.docker/bin:$PATH
+  '';
 })

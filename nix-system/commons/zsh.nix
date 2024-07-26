@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   enable = true;
   autosuggestion.enable = true;
   enableCompletion = true;
@@ -8,19 +8,13 @@
   shellAliases = {
     ls = "ls --color=auto";
     la = "ls -Alh --color=auto";
+    g = "git";
+    gs = "git status";
     gco = "git checkout";
     gcob = "git checkout -b";
     glog = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'";
     gloga = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
     nr = "darwin-rebuild switch --flake ~/.dotfiles/nix-system";
-
-    node22 = "nix shell nixpkgs/0837fbf227364d79cbae8fff2378125526905cbe#nodejs_22";
-    node20 = "nix shell nixpkgs/3281bec7174f679eabf584591e75979a258d8c40#nodejs_20";
-    node18 = "nix shell nixpkgs/3281bec7174f679eabf584591e75979a258d8c40#nodejs_18";
-    node16 = "NIXPKGS_ALLOW_INSECURE=1 nix shell nixpkgs/a71323f68d4377d12c04a5410e214495ec598d4c#nodejs_16 --impure";
-    node14 = "NIXPKGS_ALLOW_INSECURE=1 nix shell nixpkgs/9957cd48326fe8dbd52fdc50dd2502307f188b0d#nodejs_14 --impure";
-    node12 = "NIXPKGS_ALLOW_INSECURE=1 nix shell nixpkgs/cce0667703fce3a1162dd252cf0864fdf83466ab#nodejs-12_x --impure";
-    node10 = "NIXPKGS_ALLOW_INSECURE=1 nix shell nixpkgs/cce0667703fce3a1162dd252cf0864fdf83466ab#nodejs-10_x --impure";
   };
   syntaxHighlighting = {
     enable = true;

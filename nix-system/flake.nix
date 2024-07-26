@@ -16,21 +16,20 @@
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = inputs @ {
+  outputs = {
     nixpkgs,
     darwin,
     home-manager,
     neovim-nightly,
     ...
   }: let
-    labyrinth-variant = "shade";
+    labyrinth-variant = "mist";
+    overlays = [neovim-nightly.overlays.default];
   in {
     darwinConfigurations.Mac = let
       pkgs = import nixpkgs {
         system = "x86_64-darwin";
-        overlays = [
-          neovim-nightly.overlays.default
-        ];
+        overlays = overlays;
       };
     in
       darwin.lib.darwinSystem {
@@ -54,9 +53,7 @@
     darwinConfigurations.WHM5006336 = let
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
-        overlays = [
-          neovim-nightly.overlays.default
-        ];
+        overlays = overlays;
       };
     in
       darwin.lib.darwinSystem {
