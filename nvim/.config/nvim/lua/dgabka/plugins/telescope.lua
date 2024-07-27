@@ -54,12 +54,12 @@ return {
             else
                 builtin.find_files()
             end
-        end)
-        vim.keymap.set("n", "<leader>fl", builtin.find_files)
-        vim.keymap.set("n", "<leader>fr", builtin.lsp_references)
-        vim.keymap.set("n", "<leader>fd", builtin.lsp_definitions)
-        vim.keymap.set("n", "<leader>ft", builtin.lsp_type_definitions)
-        vim.keymap.set("n", "<leader>fg", builtin.live_grep)
-        vim.keymap.set("n", "<leader>fb", builtin.buffers)
+        end, { desc = "Git files" })
+        vim.keymap.set("n", "<leader>fl", builtin.find_files, { desc = "Files" })
+        vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "References" })
+        vim.keymap.set("n", "<leader>fd", builtin.lsp_definitions, { desc = "Definitions" })
+        vim.keymap.set("n", "<leader>ft", builtin.lsp_type_definitions, { desc = "Type Definitions" })
+        vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Grep" })
+        vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
     end,
 }

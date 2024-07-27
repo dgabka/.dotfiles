@@ -4,7 +4,9 @@ return {
     ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
     lazy = true,
     config = function()
-        require("typescript-tools").setup {
+        local tt = require "typescript-tools"
+
+        tt.setup {
             settings = { expose_as_code_action = { "add_missing_imports", "organize_imports" } },
             code_lens = "all",
             tsserver_file_preferences = {
@@ -22,5 +24,8 @@ return {
                 filetypes = { "javascriptreact", "typescriptreact" },
             },
         }
+
+        vim.keymap.set("n", "<leader>lo", "<cmd>TSToolsOrganizeImports<CR>", { desc = "Organize imports" })
+        vim.keymap.set("n", "<leader>li", "<cmd>TSToolsAddMissingImports<CR>", { desc = "Organize imports" })
     end,
 }

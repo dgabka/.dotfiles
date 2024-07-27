@@ -70,7 +70,7 @@ return {
             },
         }
 
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format" })
     end,
 }
