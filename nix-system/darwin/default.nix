@@ -6,8 +6,7 @@
     experimental-features = nix-command flakes
   '';
   environment.systemPackages = with pkgs; [coreutils];
-  fonts.fontDir.enable = true;
-  fonts.fonts = [./fonts];
+  fonts.packages = [./fonts];
   services.nix-daemon.enable = true;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 14;
   system.defaults.NSGlobalDomain.KeyRepeat = 1;
