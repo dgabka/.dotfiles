@@ -39,13 +39,11 @@ in {
   escapeTime = 10;
   newSession = true;
   sensibleOnTop = false;
+  keyMode = "vi";
 
   plugins = with pkgs; [
     {
       plugin = sensible;
-    }
-    {
-      plugin = tmuxPlugins.tmux-fzf;
     }
     {
       plugin = tmuxPlugins.resurrect;
@@ -85,6 +83,8 @@ in {
     unbind '"'
     unbind %
 
+    # start selection with v
+    bind -T copy-mode-vi v send -X begin-selection
 
     # Easy pane resize
     bind -n S-M-Left resize-pane -L 5
