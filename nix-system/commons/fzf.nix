@@ -13,7 +13,6 @@ in {
   enable = true;
   enableBashIntegration = true;
   enableZshIntegration = true;
-  tmux.enableShellIntegration = true;
   changeDirWidgetCommand = "fd --type d --hidden";
   changeDirWidgetOptions = [
     "--height 50%"
