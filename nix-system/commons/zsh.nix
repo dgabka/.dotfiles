@@ -4,7 +4,13 @@
   enableCompletion = true;
   dotDir = ".config/zsh";
   history.ignorePatterns = ["rm *"];
-  historySubstringSearch.enable = true;
+  history.ignoreAllDups = true;
+  historySubstringSearch = {
+    enable = true;
+    searchDownKey = "^[[B";
+    searchUpKey = "^[[A";
+  };
+  defaultKeymap = "viins";
   shellAliases = {
     ls = "ls --color=auto";
     la = "ls -Alh --color=auto";
@@ -19,10 +25,12 @@
   syntaxHighlighting = {
     enable = true;
   };
-  initExtraFirst = ''
-    bindkey -v
-  '';
   initExtra = ''
+    autoload -z edit-command-line
+    zle -N edit-command-line
+    bindkey -M vicmd "^[e" edit-command-line
+    bindkey -M viins "^[e" edit-command-line
+
     function fzf-env-widget {
       env | cut -d'=' -f1 | fzf --preview "eval 'echo \$'{}"
     }
