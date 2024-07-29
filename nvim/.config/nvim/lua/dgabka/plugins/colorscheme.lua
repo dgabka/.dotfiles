@@ -1,6 +1,6 @@
 return {
     {
-        dir = "/Users/dgabka/repos/labyrinth/labyrinth-nvim",
+        "dgabka/labyrinth-nvim",
         name = "labyrinth",
         priority = 1000,
         config = function()

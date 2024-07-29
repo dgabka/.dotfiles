@@ -17,6 +17,7 @@
     glab
     fnm
     colima
+    devbox
   ];
   programs.zsh.shellAliases = {
     sports = "cd ~/williamhillplc/sports/";
