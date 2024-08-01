@@ -79,6 +79,7 @@ function M.config()
             { name = "nvim_lua" },
             { name = "path" },
             { name = "cmp-nvim-lsp-signature-help" },
+            { name = "lazydev" },
         },
         confirm_opts = {
             behavior = cmp.ConfirmBehavior.Replace,
