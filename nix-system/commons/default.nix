@@ -12,6 +12,7 @@
     jq
     tree
     stow
+    htop
 
     # language tools, LSPs, formatters, etc...
     nil # nix language server
@@ -32,6 +33,7 @@
     nodejs
     pre-commit
     docker
+    devbox
   ];
   home.sessionVariables = {
     EDITOR = "nvim";
