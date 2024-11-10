@@ -17,11 +17,8 @@ return {
             "bashls",
             "marksman",
             "dockerls",
+            "sourcekit",
         }
-
-        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-        vim.lsp.handlers["textDocument/signatureHelp"] =
-            vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
         for _, server in pairs(servers) do
             lspconfig[server].setup {}
@@ -71,6 +68,5 @@ return {
         }
 
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format" })
     end,
 }

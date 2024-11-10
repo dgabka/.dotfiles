@@ -28,6 +28,8 @@
     nodePackages_latest.bash-language-server
     shellcheck
     shfmt
+    prettierd
+    sourcekit-lsp
 
     # dev tools
     nodejs
