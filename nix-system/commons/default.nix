@@ -15,21 +15,31 @@
     htop
 
     # language tools, LSPs, formatters, etc...
-    nil # nix language server
+    # nix
+    nil
     alejandra
+    # lua
+    luajitPackages.luacheck
     lua-language-server
     stylua
+    # yaml
     yaml-language-server
     yamlfmt
-    vscode-langservers-extracted
-    marksman
-    typescript
-    dockerfile-language-server-nodejs
+    # shell tools
     nodePackages_latest.bash-language-server
     shellcheck
     shfmt
+    # javascript tools
+    typescript
+    eslint_d
     prettierd
+    vscode-langservers-extracted
+    # swift tools (swiftformat installed via brew)
     sourcekit-lsp
+    swiftlint
+    # other
+    marksman
+    dockerfile-language-server-nodejs
 
     # dev tools
     nodejs
