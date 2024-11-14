@@ -16,35 +16,16 @@
         sha256 = "sha256-bvC42ctPyo2o2h5Muh7aHwHhDYb3MOlDEdrVqt+dH74=";
       };
     };
-  sensible =
-    pkgs.tmuxPlugins.mkTmuxPlugin
-    {
-      pluginName = "sensible";
-      version = "unstable-2024-01-08";
-      src = pkgs.fetchFromGitHub {
-        owner = "tmux-plugins";
-        repo = "tmux-sensible";
-        rev = "25cb91f42d020f675bb0a2ce3fbd3a5d96119efa";
-        sha256 = "sha256-sw9g1Yzmv2fdZFLJSGhx1tatQ+TtjDYNZI5uny0+5Hg=";
-      };
-      postInstall = ''
-        sed -e 's:reattach-to-user-namespace:${pkgs.reattach-to-user-namespace}/bin/reattach-to-user-namespace:g' -i $target/sensible.tmux
-      '';
-    };
 in {
   enable = true;
   prefix = "C-a";
   terminal = "alacritty";
   clock24 = true;
   escapeTime = 10;
-  newSession = true;
   sensibleOnTop = false;
   keyMode = "vi";
 
   plugins = with pkgs; [
-    {
-      plugin = sensible;
-    }
     {
       plugin = tmuxPlugins.resurrect;
       extraConfig = "set -g @resurrect-strategy-nvim 'session'";
