@@ -37,6 +37,7 @@
         pkgs = pkgs;
         modules = [
           ./darwin
+          ./darwin/home.nix
           home-manager.darwinModules.home-manager
           {
             home-manager = {

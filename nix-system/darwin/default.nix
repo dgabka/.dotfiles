@@ -12,11 +12,4 @@
   system.stateVersion = 4;
   users.users.dgabka.home = "/Users/dgabka";
   users.users.dgabka.shell = pkgs.zsh;
-  homebrew.enable = true;
-  homebrew.brews = [
-    "xcode-build-server"
-    "xcbeautify"
-    "pipx"
-    "swiftformat"
-  ];
 }

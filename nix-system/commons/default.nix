@@ -34,9 +34,6 @@
     eslint_d
     prettierd
     vscode-langservers-extracted
-    # swift tools (swiftformat installed via brew)
-    sourcekit-lsp
-    swiftlint
     # other
     marksman
     dockerfile-language-server-nodejs
