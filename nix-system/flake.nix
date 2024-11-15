@@ -43,7 +43,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.dgabka = import ./home {
+              users.dgabka = import ./home-manager/home {
                 inherit pkgs;
                 inherit labyrinth-variant;
               };
@@ -67,7 +67,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.dgabka = import ./work {
+              users.dgabka = import ./home-manager/work {
                 inherit pkgs;
                 inherit labyrinth-variant;
               };
