@@ -39,5 +39,6 @@ in {
     "--no-separator"
     "--no-scrollbar"
   ];
+  tmux.enableShellIntegration = true;
   colors = import "${theme}/dist/labyrinth-${labyrinth-variant}.nix";
 }

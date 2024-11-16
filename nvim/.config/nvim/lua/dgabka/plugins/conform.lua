@@ -4,7 +4,6 @@ return {
     cmd = { "ConformInfo" },
     keys = {
         {
-            -- Customize or remove this keymap to your liking
             "<leader>lf",
             function()
                 require("conform").format { async = true }
@@ -25,6 +24,7 @@ return {
             nix = { "alejandra" },
             yaml = { "yamlfmt" },
             bash = { "shfmt" },
+            zsh = { "shfmt" },
         },
         format_on_save = function(bufnr)
             local ignore_filetypes = { "oil" }
