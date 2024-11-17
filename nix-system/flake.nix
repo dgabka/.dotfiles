@@ -75,5 +75,26 @@
           }
         ];
       };
+    nixosConfigurations.terminus = let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = overlays;
+      };
+    in
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./terminus/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.dgabka = import ./home-manager/terminus {
+              inherit pkgs;
+              inherit labyrinth-variant;
+            };
+          }
+        ];
+      };
   };
 }
