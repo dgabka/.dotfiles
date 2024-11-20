@@ -20,6 +20,8 @@ return {
             lua = { "stylua" },
             javascript = { "prettierd" },
             typescript = { "prettierd" },
+            javascriptreact = { "prettierd" },
+            typescriptreact = { "prettierd" },
             swift = { "swiftformat" },
             nix = { "alejandra" },
             yaml = { "yamlfmt" },
