@@ -243,12 +243,29 @@
         "type": "github"
       }
     },
+    "pkgs-node14": {
+      "locked": {
+        "lastModified": 1696599365,
+        "narHash": "sha256-Qy2e5VZRoLZ61ee7XmuaUOUgprW3AyE0uLyfohTPxMM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e1ee359d16a1886f0771cc433a00827da98d861c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e1ee359d16a1886f0771cc433a00827da98d861c",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "darwin": "darwin",
         "home-manager": "home-manager",
         "neovim-nightly": "neovim-nightly",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "pkgs-node14": "pkgs-node14"
       }
     }
   },

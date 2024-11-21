@@ -15,12 +15,15 @@
     # NeoVim Nightly
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
+
+    pkgs-node14.url = "github:nixos/nixpkgs?rev=e1ee359d16a1886f0771cc433a00827da98d861c";
   };
   outputs = {
     nixpkgs,
     darwin,
     home-manager,
     neovim-nightly,
+    pkgs-node14,
     ...
   }: let
     labyrinth-variant = "mist";
@@ -97,6 +100,25 @@
             };
           }
         ];
+      };
+    devShells.aarch64-darwin.node14 = let
+      system = "aarch64-darwin";
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+      old = import pkgs-node14 {
+        inherit system;
+      };
+    in
+      pkgs.mkShell {
+        packages = with old; [
+          nodejs_14
+          (yarn.override {nodejs = nodejs_14;})
+          python2
+        ];
+        shellHook = ''
+          exec zsh
+        '';
       };
   };
 }
