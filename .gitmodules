@@ -1,0 +1,3 @@
+[submodule "nix-system/terminus/selfhosted"]
+	path = nix-system/terminus/selfhosted
+	url = git@github.com:dgabka/terminus-selfhosted.git

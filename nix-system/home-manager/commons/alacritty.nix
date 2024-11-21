@@ -49,7 +49,7 @@ in {
       };
     };
 
-    import = [
+    general.import = [
       "${labyrinth}/dist/labyrinth-${labyrinth-variant}.toml"
     ];
   };

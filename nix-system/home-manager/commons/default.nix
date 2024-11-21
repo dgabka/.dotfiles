@@ -85,6 +85,7 @@
       sw = "switch";
       rb = "rebase";
     };
+    extraConfig.pull.rebase = true;
   };
   programs.starship = import ./starship.nix;
   programs.alacritty = import ./alacritty.nix {
