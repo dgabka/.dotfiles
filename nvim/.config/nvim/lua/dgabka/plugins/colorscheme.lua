@@ -4,8 +4,9 @@ return {
         name = "labyrinth",
         priority = 1000,
         config = function()
+            local variant = os.getenv "LABYRINTH_VARIANT" or "mist"
             require("labyrinth").setup {
-                variant = "mist",
+                variant = variant,
                 styles = {
                     italic = false,
                 },
@@ -23,12 +24,6 @@ return {
                 },
             }
             vim.cmd.colorscheme "labyrinth"
-        end,
-    },
-    {
-        "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup()
         end,
     },
 }

@@ -47,6 +47,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERM = "alacritty";
+    LABYRINTH_VARIANT = labyrinth-variant;
   };
   xdg.enable = true;
   programs.fd = {

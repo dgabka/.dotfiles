@@ -51,6 +51,7 @@ local M = {
 
 function M.config()
     local cmp = require "cmp"
+    -- Conlicts with copilot
     -- vim.keymap.set({ "i", "s" }, "<Tab>", function()
     --     if vim.snippet.active { direction = 1 } then
     --         return "<cmd>lua vim.snippet.jump(1)<cr>"
