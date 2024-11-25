@@ -16,6 +16,12 @@
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
+    selfhosted = {
+      url = "git+file:nix-system/terminus/selfhosted?ref=main";
+      flake = false;
+    };
+
+    # Node 14
     pkgs-node14.url = "github:nixos/nixpkgs?rev=e1ee359d16a1886f0771cc433a00827da98d861c";
   };
   outputs = {
@@ -23,6 +29,7 @@
     darwin,
     home-manager,
     neovim-nightly,
+    selfhosted,
     pkgs-node14,
     ...
   }: let
@@ -89,7 +96,7 @@
         modules = [
           ./terminus/configuration.nix
           ./terminus/samba.nix
-          ./terminus/selfhosted
+          "${selfhosted}/default.nix"
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
