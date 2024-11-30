@@ -1,4 +1,4 @@
-({
+{
   pkgs,
   labyrinth-variant,
   ...
@@ -18,6 +18,7 @@
     fnm
     colima
     devbox
+    reattach-to-user-namespace
   ];
   programs.zsh.shellAliases = {
     sports = "cd ~/williamhillplc/sports/";
@@ -28,17 +29,8 @@
       fnm use $1;
     }
   '';
-  programs.k9s = {
-    enable = true;
-    settings = {
-      k9s = {
-        ui = {
-          skin = "rose-pine-moon";
-        };
-      };
-    };
-    skins = {
-      rose-pine-moon = import ./k9s_rose_pine_moon.nix;
-    };
+  programs.k9s = import ./k9s.nix {
+    inherit pkgs;
+    inherit labyrinth-variant;
   };
-})
+}

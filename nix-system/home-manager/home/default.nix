@@ -11,6 +11,7 @@
   ];
   home.packages = with pkgs; [
     rename
+    reattach-to-user-namespace
 
     # swift tools (swiftformat installed via brew)
     sourcekit-lsp

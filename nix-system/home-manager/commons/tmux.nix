@@ -12,8 +12,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "dgabka";
         repo = "labyrinth-tmux";
-        rev = "0bcab8a07abdf8d5c56898f0b5c21d741e137ffd";
-        sha256 = "sha256-bvC42ctPyo2o2h5Muh7aHwHhDYb3MOlDEdrVqt+dH74=";
+        rev = "4a99d4317d2aab07e6a7bceac558dd9118ceb37a";
+        sha256 = "sha256-xVlIarOGNXjW9btMANawGsX2xxI82TY9fvkbXCYMAnQ=";
       };
     };
 in {
@@ -40,6 +40,7 @@ in {
     {
       plugin = labyrinth-tmux;
       extraConfig = ''
+        set-option -g default-command "reattach-to-user-namespace -l zsh"
         set -g @labyrinth_variant '${labyrinth-variant}'
         set -g @labyrinth_show_pane_directory 'on'
         set -g @labyrinth_window_status_separator " │ "

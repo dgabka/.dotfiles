@@ -6,8 +6,8 @@
   labyrinth = pkgs.fetchFromGitHub {
     owner = "dgabka";
     repo = "labyrinth-alacritty";
-    rev = "f6154f49e66c90df3e2dcc7f42efd44f7b8b5a2b";
-    sha256 = "sha256-w6SoyJnG9nIzGJx5REZwI31f7SAxDNeBW2lY5IFbcIA=";
+    rev = "9659500fbd33c9c6d33cca0ecaa0b5cdd4fcdcb3";
+    sha256 = "sha256-fV0u+LavycEpmcq/Fy3Tw8q3jZMQpyNyS8tr3+a1ebE=";
   };
 in {
   enable = true;
