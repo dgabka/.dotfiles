@@ -12,8 +12,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "dgabka";
         repo = "labyrinth-tmux";
-        rev = "4a99d4317d2aab07e6a7bceac558dd9118ceb37a";
-        sha256 = "sha256-xVlIarOGNXjW9btMANawGsX2xxI82TY9fvkbXCYMAnQ=";
+        rev = "6e89111871d91508f1f7dc7fbd16c3b68dde3806";
+        sha256 = "sha256-rMRuNsnAIY7/O65/pte+BCJ+ZPw7X7iK/ClOaNOhqTk=";
       };
     };
 in {
