@@ -13,6 +13,22 @@ return {
             swift = { "swiftlint" },
         }
 
+        lint.linters.luacheck = {
+            cmd = "luacheck",
+            stdin = true,
+            args = {
+                "--globals",
+                "vim",
+                "reload",
+                "--",
+            },
+            stream = "stdout",
+            ignore_exitcode = true,
+            parser = require("lint.parser").from_errorformat("%f:%l:%c: %m", {
+                source = "luacheck",
+            }),
+        }
+
         vim.keymap.set("n", "<leader>ll", function()
             require("lint").try_lint()
         end, { desc = "Lint file" })
