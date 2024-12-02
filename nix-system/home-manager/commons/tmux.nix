@@ -24,6 +24,7 @@ in {
   escapeTime = 10;
   sensibleOnTop = false;
   keyMode = "vi";
+  historyLimit = 10000;
 
   plugins = with pkgs; [
     {
