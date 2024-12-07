@@ -12,8 +12,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "dgabka";
         repo = "labyrinth-tm-theme";
-        rev = "e88cf8d61640cf564a519f3fb8c86d19c1a84b57";
-        sha256 = "sha256-4R4zr3XiT5ER/JtRhjtX7CpHiGfie4FbaJraXjFrcsI=";
+        rev = "16b73b3327c37e9fbeea07ea6e1d7f9f0ce3209c";
+        sha256 = "sha256-hoEJQn9hl8ktd05aJxvuXJdadU5TEv5PO8Xny+3QRxk=";
       };
       file = "dist/labyrinth-${labyrinth-variant}.tmTheme";
     };

@@ -6,8 +6,8 @@
   theme = pkgs.fetchFromGitHub {
     owner = "dgabka";
     repo = "labyrinth-fzf";
-    rev = "9fe783b027f8c35c04b686ff4cb1a9777e5df73d";
-    sha256 = "sha256-/HJ8XEHoqxfOHmqmCkIuU7KCBqlzsj7reTjo3Fo7UGk=";
+    rev = "10b21ef846ccd73425be66641840006a01eea66f";
+    sha256 = "sha256-NqOikPg7Nt829ahAuZZ1cUlSmC+qk4+kh3x8dZnvqKg=";
   };
 in {
   enable = true;
