@@ -95,8 +95,6 @@
         system = "x86_64-linux";
         modules = [
           ./terminus/configuration.nix
-          ./terminus/samba.nix
-          "${selfhosted}/default.nix"
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

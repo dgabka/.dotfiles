@@ -6,6 +6,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./external-drives.nix
+    ./selfhosted/default.nix
+    ./samba.nix
   ];
 
   # Bootloader.
