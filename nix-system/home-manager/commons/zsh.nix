@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   enable = true;
   autosuggestion.enable = true;
   enableCompletion = true;
@@ -25,4 +25,16 @@
     enable = true;
   };
   initExtra = builtins.readFile ./zshExtra.zsh;
+  plugins = [
+    {
+      name = "nx-completion";
+      file = "nx-completion.plugin.zsh";
+      src = pkgs.fetchFromGitHub {
+        owner = "jscutlery";
+        repo = "nx-completion";
+        rev = "main";
+        sha256 = "sha256-ZKcaFDtHEMAFH2L0c4Q2JNkZHeB6dUfiUmDwSojPaRE=";
+      };
+    }
+  ];
 }

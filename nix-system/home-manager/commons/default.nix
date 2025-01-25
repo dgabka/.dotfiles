@@ -63,6 +63,7 @@
       "--hidden"
       "--glob=!.git/*"
       "--glob=!node_modules/*"
+      "--glob=!__snapshots__/*"
       "--glob=!package-lock.json"
       "--glob=!yarn.lock"
       "--glob=!pnpm.lock"
