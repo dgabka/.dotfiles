@@ -4,6 +4,10 @@ return {
         "mfussenegger/nvim-dap",
         "nvim-neotest/nvim-nio",
     },
+    keys = {
+        { "<leader>dc", "<cmd>DapContinue<cr>", desc = "Debugger Continue" },
+        { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle Breakpoint" },
+    },
     config = function()
         require("dapui").setup()
         local dap, dapui = require "dap", require "dapui"

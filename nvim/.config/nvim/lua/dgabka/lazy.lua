@@ -14,4 +14,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup {
     spec = "dgabka.plugins",
     change_detection = { notify = false },
+    lazy = true,
+    install = {
+        -- install missing plugins on startup. This doesn't increase startup time.
+        missing = true,
+        -- try to load one of these colorschemes when starting an installation during startup
+        colorscheme = { "labyrinth-mist" },
+    },
 }
