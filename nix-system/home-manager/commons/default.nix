@@ -102,4 +102,9 @@
     inherit pkgs;
     inherit labyrinth-variant;
   };
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableZshIntegration = true;
+  };
 }
