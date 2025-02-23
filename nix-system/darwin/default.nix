@@ -9,7 +9,6 @@
   users.users.dgabka.home = "/Users/dgabka";
   users.users.dgabka.shell = pkgs.zsh;
 
-  services.nix-daemon.enable = true;
   security.pam.enableSudoTouchIdAuth = true;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 14;
   system.defaults.NSGlobalDomain.KeyRepeat = 1;
