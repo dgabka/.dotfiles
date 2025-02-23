@@ -26,5 +26,4 @@ return {
             vim.cmd.colorscheme "labyrinth"
         end,
     },
-    { "norcalli/nvim-colorizer.lua" },
 }
