@@ -7,7 +7,6 @@ return {
         local tt = require "typescript-tools"
 
         tt.setup {
-            settings = { expose_as_code_action = { "add_missing_imports", "organize_imports" } },
             code_lens = "all",
             tsserver_file_preferences = {
                 includeInlayEnumMemberValueHints = true,
