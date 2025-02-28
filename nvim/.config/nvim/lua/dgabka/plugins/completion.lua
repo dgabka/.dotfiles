@@ -1,108 +1,98 @@
-local kind_icons = {
-    Text = "",
-    Method = "󰆧",
-    Function = "󰊕",
-    Constructor = "",
-    Field = "󰇽",
-    Variable = "󰂡",
-    Class = "󰠱",
-    Interface = "",
-    Module = "",
-    Property = "󰜢",
-    Unit = "",
-    Value = "󰎠",
-    Enum = "",
-    Keyword = "󰌋",
-    Snippet = "",
-    Color = "󰏘",
-    File = "󰈙",
-    Reference = "",
-    Folder = "󰉋",
-    EnumMember = "",
-    Constant = "󰏿",
-    Struct = "",
-    Event = "",
-    Operator = "󰆕",
-    TypeParameter = "󰅲",
-}
-
-local M = {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-        {
-            "hrsh7th/cmp-nvim-lsp",
-            event = "InsertEnter",
-        },
-        {
-            "hrsh7th/cmp-path",
-            event = "InsertEnter",
-        },
-        {
-            "hrsh7th/cmp-nvim-lua",
-            event = "InsertEnter",
-        },
-        {
-            "hrsh7th/cmp-nvim-lsp-signature-help",
-            event = "InsertEnter",
-        },
-    },
-}
-
-function M.config()
+return {
+  "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
+  dependencies = {
+    "onsails/lspkind.nvim",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    { "L3MON4D3/LuaSnip", build = "make install_jsregexp", dependencies = "rafamadriz/friendly-snippets" },
+    "saadparwaiz1/cmp_luasnip",
+    "roobert/tailwindcss-colorizer-cmp.nvim",
+  },
+  config = function()
     local cmp = require "cmp"
-    -- Conlicts with copilot
-    -- vim.keymap.set({ "i", "s" }, "<Tab>", function()
-    --     if vim.snippet.active { direction = 1 } then
-    --         return "<cmd>lua vim.snippet.jump(1)<cr>"
-    --     else
-    --         return "<Tab>"
-    --     end
-    -- end, { expr = true })
-    cmp.setup {
-        snippet = {
-            expand = function(args)
-                vim.snippet.expand(args.body)
-            end,
-        },
-        mapping = cmp.mapping.preset.insert {
-            ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-            ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-            ["<C-e>"] = cmp.mapping {
-                i = cmp.mapping.abort(),
-                c = cmp.mapping.close(),
-            },
-            ["<CR>"] = cmp.mapping.confirm { select = true },
-        },
-        sources = {
-            { name = "nvim_lsp" },
-            { name = "nvim_lua" },
-            { name = "path" },
-            { name = "cmp-nvim-lsp-signature-help" },
-            { name = "lazydev" },
-        },
-        confirm_opts = {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-        },
-        formatting = {
-            format = function(entry, vim_item)
-                -- Kind icons
-                vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
-                -- Source
-                vim_item.menu = ({
-                    nvim_lsp = "[LSP]",
-                    nvim_lua = "[Lua]",
-                    path = "[Path]",
-                })[entry.source.name]
-                return vim_item
-            end,
-        },
-        window = {
-            documentation = cmp.config.window.bordered(),
-        },
-    }
-end
+    local luasnip = require "luasnip"
+    local lspkind = require "lspkind"
 
-return M
+    cmp.setup {
+      snippet = {
+        expand = function(args)
+          vim.snippet.expand(args.body)
+        end,
+      },
+      mapping = cmp.mapping.preset.insert {
+        ["<CR>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            if luasnip.expandable() then
+              luasnip.expand()
+            else
+              cmp.confirm {
+                select = true,
+              }
+            end
+          else
+            fallback()
+          end
+        end),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<C-e>"] = cmp.mapping {
+          i = cmp.mapping.abort(),
+          c = cmp.mapping.close(),
+        },
+      },
+      sources = {
+        { name = "luasnip" },
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
+        { name = "path" },
+        { name = "buffer" },
+        { name = "cmp-nvim-lsp-signature-help" },
+      },
+      confirm_opts = {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = false,
+      },
+      formatting = {
+        format = lspkind.cmp_format {
+          mode = "symbol_text",
+          menu = {
+            buffer = "[buf]",
+            nvim_lsp = "[LSP]",
+            luasnip = "[snip]",
+            nvim_lua = "[api]",
+            path = "[path]",
+          },
+        },
+      },
+      window = {
+        documentation = cmp.config.window.bordered(),
+      },
+    }
+
+    require("luasnip.loaders.from_vscode").lazy_load()
+  end,
+}

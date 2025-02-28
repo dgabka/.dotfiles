@@ -1,6 +1,7 @@
 return {
-    "tpope/vim-fugitive",
-    config = function()
-        vim.keymap.set("n", "<leader>gs", ":0G<CR>", { desc = "Fugitive" })
-    end,
+  "tpope/vim-fugitive",
+  keys = {
+    { "<leader>gs", "<cmd>0G<CR>", desc = "Fugitive satus" },
+    { "<leader>gl", "<cmd>0Gclog<CR>", desc = "File revision history" },
+  },
 }
