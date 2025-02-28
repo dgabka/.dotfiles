@@ -6,7 +6,7 @@ bindkey -M viins "^[e" edit-command-line
 function fzf-grep-widget {
   RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
   INITIAL_QUERY="$1"
-  : | fzf-tmux -d 100% -- --ansi --disabled --query "$INITIAL_QUERY" \
+  : | fzf -d 100% -- --ansi --disabled --query "$INITIAL_QUERY" \
     --bind "start:reload:$RG_PREFIX {q}" \
     --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
     --delimiter : \
