@@ -1,7 +1,6 @@
 autoload -z edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd "^[e" edit-command-line
-bindkey -M viins "^[e" edit-command-line
+bindkey "^E" edit-command-line
 
 function fzf-grep-widget {
   RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "

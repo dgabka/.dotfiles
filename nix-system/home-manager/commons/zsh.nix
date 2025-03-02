@@ -7,8 +7,8 @@
   history.ignoreAllDups = true;
   historySubstringSearch = {
     enable = true;
-    searchDownKey = "^[[B";
-    searchUpKey = "^[[A";
+    searchDownKey = "^N";
+    searchUpKey = "^P";
   };
   shellAliases = {
     ls = "ls --color=auto";
@@ -25,16 +25,4 @@
     enable = true;
   };
   initExtra = builtins.readFile ./zshExtra.zsh;
-  plugins = [
-    {
-      name = "nx-completion";
-      file = "nx-completion.plugin.zsh";
-      src = pkgs.fetchFromGitHub {
-        owner = "jscutlery";
-        repo = "nx-completion";
-        rev = "main";
-        sha256 = "sha256-ZKcaFDtHEMAFH2L0c4Q2JNkZHeB6dUfiUmDwSojPaRE=";
-      };
-    }
-  ];
 }
