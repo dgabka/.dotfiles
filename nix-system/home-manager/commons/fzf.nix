@@ -13,6 +13,7 @@ in {
   enable = true;
   enableBashIntegration = true;
   enableZshIntegration = true;
+  enableFishIntegration = true;
   changeDirWidgetCommand = "fd --type d --hidden";
   changeDirWidgetOptions = [
     "--height 50%"
