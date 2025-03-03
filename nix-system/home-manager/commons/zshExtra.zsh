@@ -1,6 +1,12 @@
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+bindkey -v
+
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^E" edit-command-line
+
+bindkey '^ ' autosuggest-accept
 
 function fzf-grep-widget {
   RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
