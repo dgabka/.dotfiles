@@ -1,7 +1,5 @@
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-bindkey -v
-
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^E" edit-command-line
