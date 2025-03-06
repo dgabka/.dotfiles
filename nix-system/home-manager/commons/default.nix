@@ -31,6 +31,7 @@
     shellcheck
     shfmt
     # javascript tools
+    vtsls
     typescript
     eslint_d
     prettierd

@@ -1,10 +1,24 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      opts = {
+        library = {
+          -- See the configuration section for more details
+          -- Load luvit types when the `vim.uv` word is found
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
+    },
     "b0o/schemastore.nvim",
+    "yioneko/nvim-vtsls",
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
+    require("lspconfig.configs").vtsls = require("vtsls").lspconfig
+
     local lspconfig = require "lspconfig"
     local servers = {
       "cssls",
@@ -18,6 +32,34 @@ return {
     for _, server in pairs(servers) do
       lspconfig[server].setup {}
     end
+
+    lspconfig.vtsls.setup {
+      settings = {
+        typescript = {
+          tsserver = {
+            experimental = {
+              enableProjectDiagnostics = true,
+            },
+          },
+          inlayHints = {
+            parameterNames = { enabled = "literals" },
+            parameterTypes = { enabled = true },
+            variableTypes = { enabled = true },
+            propertyDeclarationTypes = { enabled = true },
+            functionLikeReturnTypes = { enabled = true },
+            enumMemberValues = { enabled = true },
+          },
+        },
+      },
+      server_capabilities = {
+        documentFormattingProvider = false,
+      },
+      on_attach = function()
+        vim.keymap.set("n", "<leader>lo", "<cmd>VtsExec organize_imports", { desc = "Ogranize Imports" })
+        vim.keymap.set("n", "<leader>lf", "<cmd>VtsExec file_references", { desc = "File References" })
+        vim.keymap.set("n", "<leader>lr", "<cmd>VtsExec rename_file", { desc = "Rename File" })
+      end,
+    }
 
     lspconfig.jsonls.setup {
       settings = {
@@ -36,7 +78,7 @@ return {
           schemas = require("schemastore").yaml.schemas(),
         },
       },
-      on_attach = function(client, bufnr)
+      on_attach = function(client)
         client.server_capabilities.documentFormattingProvider = true
       end,
     }

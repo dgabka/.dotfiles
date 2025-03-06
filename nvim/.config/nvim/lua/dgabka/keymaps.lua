@@ -44,3 +44,13 @@ set("n", "<CR>", function()
     return vim.keycode "<CR>"
   end
 end, { expr = true })
+
+-- Workspace diagnostics
+vim.api.nvim_set_keymap("n", "<leader>X", "", {
+  noremap = true,
+  callback = function()
+    for _, client in ipairs(vim.lsp.get_clients()) do
+      require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
+    end
+  end,
+})

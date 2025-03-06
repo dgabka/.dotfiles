@@ -10,7 +10,6 @@ return {
     "hrsh7th/cmp-nvim-lsp-signature-help",
     { "L3MON4D3/LuaSnip", build = "make install_jsregexp", dependencies = "rafamadriz/friendly-snippets" },
     "saadparwaiz1/cmp_luasnip",
-    "roobert/tailwindcss-colorizer-cmp.nvim",
   },
   config = function()
     local cmp = require "cmp"
@@ -65,9 +64,13 @@ return {
         },
       },
       sources = {
+        {
+          name = "lazydev",
+          -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
+          group_index = 0,
+        },
         { name = "luasnip" },
         { name = "nvim_lsp" },
-        { name = "nvim_lua" },
         { name = "path" },
         { name = "buffer" },
         { name = "cmp-nvim-lsp-signature-help" },
