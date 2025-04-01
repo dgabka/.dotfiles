@@ -41,7 +41,7 @@ in {
     {
       plugin = labyrinth-tmux;
       extraConfig = ''
-        set-option -g default-command "reattach-to-user-namespace -l zsh"
+        if-shell 'uname | grep -q Darwin' 'set-option -g default-command "reattach-to-user-namespace -l zsh"'
         set -g @labyrinth_variant '${labyrinth-variant}'
         set -g @labyrinth_show_pane_directory 'on'
         set -g @labyrinth_window_status_separator " │ "
