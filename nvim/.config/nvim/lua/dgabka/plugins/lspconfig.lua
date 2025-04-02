@@ -55,9 +55,9 @@ return {
         documentFormattingProvider = false,
       },
       on_attach = function()
-        vim.keymap.set("n", "<leader>lo", "<cmd>VtsExec organize_imports", { desc = "Ogranize Imports" })
-        vim.keymap.set("n", "<leader>lf", "<cmd>VtsExec file_references", { desc = "File References" })
-        vim.keymap.set("n", "<leader>lr", "<cmd>VtsExec rename_file", { desc = "Rename File" })
+        vim.keymap.set("n", "<leader>lo", "<cmd>VtsExec organize_imports<CR>", { desc = "Ogranize Imports" })
+        vim.keymap.set("n", "<leader>lf", "<cmd>VtsExec file_references<CR>", { desc = "File References" })
+        vim.keymap.set("n", "<leader>lr", "<cmd>VtsExec rename_file<CR>", { desc = "Rename File" })
       end,
     }
 
@@ -73,14 +73,10 @@ return {
     lspconfig.yamlls.setup {
       settings = {
         yaml = {
-          format = { enable = true },
           schemaStore = { enable = true },
           schemas = require("schemastore").yaml.schemas(),
         },
       },
-      on_attach = function(client)
-        client.server_capabilities.documentFormattingProvider = true
-      end,
     }
 
     lspconfig.nil_ls.setup {
