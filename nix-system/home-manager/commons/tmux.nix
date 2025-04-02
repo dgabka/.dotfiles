@@ -25,6 +25,7 @@ in {
   sensibleOnTop = false;
   keyMode = "vi";
   historyLimit = 10000;
+  baseIndex = 1;
 
   plugins = with pkgs; [
     {
