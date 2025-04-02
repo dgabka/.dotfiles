@@ -52,9 +52,6 @@
     LABYRINTH_VARIANT = labyrinth-variant;
   };
   xdg.enable = true;
-  programs.fish = {
-    enable = true;
-  };
   programs.fd = {
     enable = true;
     extraOptions = ["--color=never"];
