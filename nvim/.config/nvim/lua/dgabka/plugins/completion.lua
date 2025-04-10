@@ -69,7 +69,6 @@ return {
           -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
           group_index = 0,
         },
-        { name = "luasnip" },
         { name = "nvim_lsp" },
         { name = "path" },
         { name = "buffer" },
@@ -85,7 +84,6 @@ return {
           menu = {
             buffer = "[buf]",
             nvim_lsp = "[LSP]",
-            luasnip = "[snip]",
             nvim_lua = "[api]",
             path = "[path]",
           },

@@ -12,6 +12,8 @@
   home.packages = with pkgs; [
     rename
     reattach-to-user-namespace
+    pass
+    gnupg
   ];
   programs.zsh.initExtra = ''
     PATH=$HOME/.docker/bin:$PATH
