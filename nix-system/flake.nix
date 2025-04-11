@@ -16,6 +16,9 @@
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    flake-utils.url = "github:numtide/flake-utils";
+
     selfhosted = {
       url = "git+file:nix-system/terminus/selfhosted?ref=main";
       flake = false;
@@ -26,81 +29,156 @@
     darwin,
     home-manager,
     neovim-nightly,
-    selfhosted,
+    rust-overlay,
+    flake-utils,
     ...
   }: let
     labyrinth-variant = "mist";
     overlays = [neovim-nightly.overlays.default];
-  in {
-    darwinConfigurations.Mac = let
-      pkgs = import nixpkgs {
-        system = "x86_64-darwin";
-        overlays = overlays;
-      };
-    in
-      darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        pkgs = pkgs;
-        modules = [
-          ./darwin
-          ./darwin/home.nix
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.dgabka = import ./home-manager/home {
+
+    # Define your main configurations
+    systemConfigs = {
+      darwinConfigurations.Mac = let
+        pkgs = import nixpkgs {
+          system = "x86_64-darwin";
+          overlays = overlays;
+        };
+      in
+        darwin.lib.darwinSystem {
+          system = "x86_64-darwin";
+          pkgs = pkgs;
+          modules = [
+            ./darwin
+            ./darwin/home.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.dgabka = import ./home-manager/home {
+                  inherit pkgs;
+                  inherit labyrinth-variant;
+                };
+              };
+            }
+          ];
+        };
+      darwinConfigurations.WHM5006336 = let
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          overlays = overlays;
+        };
+      in
+        darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          pkgs = pkgs;
+          modules = [
+            ./darwin
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.dgabka = import ./home-manager/work {
+                  inherit pkgs;
+                  inherit labyrinth-variant;
+                };
+              };
+            }
+          ];
+        };
+      nixosConfigurations.terminus = let
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          overlays = overlays;
+        };
+      in
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./terminus/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.dgabka = import ./home-manager/terminus {
                 inherit pkgs;
                 inherit labyrinth-variant;
               };
-            };
-          }
-        ];
-      };
-    darwinConfigurations.WHM5006336 = let
+            }
+          ];
+        };
+    };
+
+    # Create per-system outputs using flake-utils
+    systemOutputs = flake-utils.lib.eachDefaultSystem (system: let
+      pkgsOverlays = [(import rust-overlay)];
       pkgs = import nixpkgs {
-        system = "aarch64-darwin";
-        overlays = overlays;
+        inherit system;
+        overlays = pkgsOverlays;
       };
-    in
-      darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        pkgs = pkgs;
-        modules = [
-          ./darwin
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.dgabka = import ./home-manager/work {
-                inherit pkgs;
-                inherit labyrinth-variant;
-              };
-            };
-          }
-        ];
+    in {
+      devShells = {
+        default = pkgs.mkShell {
+          name = "dev-sh";
+          buildInputs = with pkgs; [
+            # Rust tools
+            rust-bin.beta.latest.default
+            rust-analyzer
+
+            # Node.js tools
+            nodejs
+            pnpm
+            yarn
+            typescript
+            vtsls
+          ];
+        };
+
+        rust = pkgs.mkShell {
+          name = "rust-sh";
+          buildInputs = with pkgs; [
+            rust-bin.beta.latest.default
+            rust-analyzer
+            cargo-watch
+          ];
+        };
+
+        node20 = pkgs.mkShell {
+          name = "node20-sh";
+          buildInputs = with pkgs; [
+            nodejs_20
+            pnpm
+            yarn
+            typescript
+            vtsls
+          ];
+        };
+
+        node22 = pkgs.mkShell {
+          name = "node22-sh";
+          buildInputs = with pkgs; [
+            nodejs_22
+            pnpm
+            yarn
+            typescript
+            vtsls
+          ];
+        };
+
+        node23 = pkgs.mkShell {
+          name = "node23-sh";
+          buildInputs = with pkgs; [
+            nodejs_23
+            pnpm
+            yarn
+            typescript
+            vtsls
+          ];
+        };
       };
-    nixosConfigurations.terminus = let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        overlays = overlays;
-      };
-    in
-      nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./terminus/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.dgabka = import ./home-manager/terminus {
-              inherit pkgs;
-              inherit labyrinth-variant;
-            };
-          }
-        ];
-      };
-  };
+    });
+  in
+    # Merge the two output sets
+    systemConfigs // systemOutputs;
 }
