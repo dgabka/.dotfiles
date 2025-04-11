@@ -33,150 +33,45 @@
     flake-utils,
     ...
   }: let
+    # Global configuration
     labyrinth-variant = "mist";
-    overlays = [neovim-nightly.overlays.default];
 
-    # Define your main configurations
+    # Import modular components
+    overlays = import ./overlays.nix {
+      inherit nixpkgs neovim-nightly rust-overlay;
+    };
+
+    # System configurations
     systemConfigs = {
-      darwinConfigurations.Mac = let
-        pkgs = import nixpkgs {
-          system = "x86_64-darwin";
-          overlays = overlays;
-        };
-      in
-        darwin.lib.darwinSystem {
-          system = "x86_64-darwin";
-          pkgs = pkgs;
-          modules = [
-            ./nix-modules/darwin
-            ./nix-modules/darwin/home.nix
-            home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.dgabka = import ./nix-modules/home-manager/home {
-                  inherit pkgs;
-                  inherit labyrinth-variant;
-                };
-              };
-            }
-          ];
-        };
-      darwinConfigurations.WHM5006336 = let
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          overlays = overlays;
-        };
-      in
-        darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          pkgs = pkgs;
-          modules = [
-            ./nix-modules/darwin
-            home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.dgabka = import ./nix-modules/home-manager/work {
-                  inherit pkgs;
-                  inherit labyrinth-variant;
-                };
-              };
-            }
-          ];
-        };
-      nixosConfigurations.terminus = let
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          overlays = overlays;
-        };
-      in
-        nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./nix-modules/terminus/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.dgabka = import ./nix-modules/home-manager/terminus {
-                inherit pkgs;
-                inherit labyrinth-variant;
-              };
-            }
-          ];
-        };
+      darwinConfigurations.Mac = import ./systems/darwin/default.nix (
+        import ./systems/darwin/mac.nix {
+          inherit darwin home-manager nixpkgs overlays labyrinth-variant;
+        }
+      );
+
+      darwinConfigurations.WHM5006336 = import ./systems/darwin/default.nix (
+        import ./systems/darwin/work.nix {
+          inherit darwin home-manager nixpkgs overlays labyrinth-variant;
+        }
+      );
+
+      nixosConfigurations.terminus =
+        (import ./systems/nixos/terminus.nix {
+          inherit nixpkgs home-manager overlays labyrinth-variant;
+        })
+        .nixosSystem;
     };
 
     # Create per-system outputs using flake-utils
     systemOutputs = flake-utils.lib.eachDefaultSystem (system: let
-      pkgsOverlays = [(import rust-overlay)];
       pkgs = import nixpkgs {
         inherit system;
-        overlays = pkgsOverlays;
+        overlays = overlays.dev;
       };
+      shells = import ./shells.nix {inherit pkgs;};
     in {
-      devShells = {
-        default = pkgs.mkShell {
-          name = "dev-sh";
-          buildInputs = with pkgs; [
-            # Rust tools
-            rust-bin.beta.latest.default
-            rust-analyzer
-
-            # Node.js tools
-            nodejs
-            pnpm
-            yarn
-            typescript
-            vtsls
-          ];
-        };
-
-        rust = pkgs.mkShell {
-          name = "rust-sh";
-          buildInputs = with pkgs; [
-            rust-bin.beta.latest.default
-            rust-analyzer
-            cargo-watch
-          ];
-        };
-
-        node20 = pkgs.mkShell {
-          name = "node20-sh";
-          buildInputs = with pkgs; [
-            nodejs_20
-            pnpm
-            yarn
-            typescript
-            vtsls
-          ];
-        };
-
-        node22 = pkgs.mkShell {
-          name = "node22-sh";
-          buildInputs = with pkgs; [
-            nodejs_22
-            pnpm
-            yarn
-            typescript
-            vtsls
-          ];
-        };
-
-        node23 = pkgs.mkShell {
-          name = "node23-sh";
-          buildInputs = with pkgs; [
-            nodejs_23
-            pnpm
-            yarn
-            typescript
-            vtsls
-          ];
-        };
-      };
+      # Re-export the shells from the dedicated file
+      devShells = shells;
     });
   in
     # Merge the two output sets
