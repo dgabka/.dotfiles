@@ -48,14 +48,14 @@
           system = "x86_64-darwin";
           pkgs = pkgs;
           modules = [
-            ./darwin
-            ./darwin/home.nix
+            ./nix-modules/darwin
+            ./nix-modules/darwin/home.nix
             home-manager.darwinModules.home-manager
             {
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.dgabka = import ./home-manager/home {
+                users.dgabka = import ./nix-modules/home-manager/home {
                   inherit pkgs;
                   inherit labyrinth-variant;
                 };
@@ -73,13 +73,13 @@
           system = "aarch64-darwin";
           pkgs = pkgs;
           modules = [
-            ./darwin
+            ./nix-modules/darwin
             home-manager.darwinModules.home-manager
             {
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.dgabka = import ./home-manager/work {
+                users.dgabka = import ./nix-modules/home-manager/work {
                   inherit pkgs;
                   inherit labyrinth-variant;
                 };
@@ -96,12 +96,12 @@
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./terminus/configuration.nix
+            ./nix-modules/terminus/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.dgabka = import ./home-manager/terminus {
+              home-manager.users.dgabka = import ./nix-modules/home-manager/terminus {
                 inherit pkgs;
                 inherit labyrinth-variant;
               };
