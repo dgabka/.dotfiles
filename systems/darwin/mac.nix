@@ -6,15 +6,16 @@
   overlays,
   labyrinth-variant,
   ...
-}: {
+}: let
+  pkgs = import nixpkgs {
+    system = "x86_64-darwin";
+    overlays = overlays.base;
+  };
+in {
   system = "x86_64-darwin";
-  overlays = overlays.base;
   userConfig = import ../../modules/home-manager/home {
-    pkgs = import nixpkgs {
-      system = "x86_64-darwin";
-      overlays = overlays.base;
-    };
-    inherit labyrinth-variant;
+    inherit labyrinth-variant pkgs;
   };
   extraModules = [../../modules/darwin/home.nix];
+  inherit pkgs darwin home-manager labyrinth-variant;
 }

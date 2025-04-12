@@ -1,6 +1,5 @@
 # Collection of all overlays used in the system
 {
-  pkgs,
   neovim-nightly,
   rust-overlay,
   ...
