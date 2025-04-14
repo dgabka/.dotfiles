@@ -74,7 +74,16 @@ return {
       settings = {
         yaml = {
           schemaStore = { enable = true },
-          schemas = require("schemastore").yaml.schemas(),
+          schemas = require("schemastore").yaml.schemas {
+            extra = {
+              {
+                url = "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json",
+                name = "Gitlab CI",
+                fileMatch = ".gitlab-ci/*",
+                description = "Gitlab CI Schema",
+              },
+            },
+          },
         },
       },
     }
