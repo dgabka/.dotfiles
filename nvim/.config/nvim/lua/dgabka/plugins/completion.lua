@@ -25,13 +25,9 @@ return {
       mapping = cmp.mapping.preset.insert {
         ["<CR>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            if luasnip.expandable() then
-              luasnip.expand()
-            else
-              cmp.confirm {
-                select = true,
-              }
-            end
+            cmp.confirm {
+              select = true,
+            }
           else
             fallback()
           end

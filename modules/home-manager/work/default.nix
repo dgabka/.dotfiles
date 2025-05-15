@@ -19,6 +19,8 @@
     colima
     devbox
     reattach-to-user-namespace
+    pass
+    gnupg
   ];
   programs.zsh.shellAliases = {
     sports = "cd ~/williamhillplc/sports/";
