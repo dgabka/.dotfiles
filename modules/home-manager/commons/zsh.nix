@@ -29,6 +29,7 @@
     node20 = "nix develop \"github:dgabka/.dotfiles#node20\" -c $SHELL";
     node22 = "nix develop \"github:dgabka/.dotfiles#node22\" -c $SHELL";
     node23 = "nix develop \"github:dgabka/.dotfiles#node23\" -c $SHELL";
+    node24 = "nix develop \"github:dgabka/.dotfiles#node24\" -c $SHELL";
   };
   syntaxHighlighting = {
     enable = true;

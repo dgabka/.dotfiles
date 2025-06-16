@@ -57,4 +57,15 @@
       vtsls
     ];
   };
+
+  node24 = pkgs.mkShell {
+    name = "node24-sh";
+    buildInputs = with pkgs; [
+      nodejs_24
+      pnpm
+      yarn
+      typescript
+      vtsls
+    ];
+  };
 }
