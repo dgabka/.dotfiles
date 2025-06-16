@@ -20,7 +20,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     selfhosted = {
-      url = "git+file:nix-system/terminus/selfhosted?ref=main";
+      url = "git+file:modules/terminus/selfhosted?ref=main";
       flake = false;
     };
   };
