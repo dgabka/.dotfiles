@@ -34,5 +34,5 @@
   syntaxHighlighting = {
     enable = true;
   };
-  initExtra = builtins.readFile ./zshExtra.zsh;
+  initContent = builtins.readFile ./zshContent.zsh;
 }

@@ -17,6 +17,7 @@
   system.defaults.finder.FXDefaultSearchScope = "SCcf";
   system.defaults.finder.ShowPathbar = true;
   system.defaults.finder.ShowStatusBar = true;
+  system.primaryUser = "dgabka";
   system.startup.chime = false;
   system.stateVersion = 4;
 }

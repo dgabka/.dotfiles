@@ -25,7 +25,7 @@
   programs.zsh.shellAliases = {
     sports = "cd ~/williamhillplc/sports/";
   };
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     useFnm() {
       eval $(fnm env);
       fnm use $1;

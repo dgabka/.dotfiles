@@ -15,7 +15,7 @@
     pass
     gnupg
   ];
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     PATH=$HOME/.docker/bin:$PATH
   '';
 })
