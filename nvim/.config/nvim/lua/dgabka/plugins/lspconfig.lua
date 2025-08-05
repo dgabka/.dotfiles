@@ -56,6 +56,7 @@ return {
       },
       on_attach = function()
         vim.keymap.set("n", "<leader>lo", "<cmd>VtsExec organize_imports<CR>", { desc = "Ogranize Imports" })
+        vim.keymap.set("n", "<leader>la", "<cmd>VtsExec add_missing_imports<CR>", { desc = "Add Missing Imports" })
         vim.keymap.set("n", "<leader>lf", "<cmd>VtsExec file_references<CR>", { desc = "File References" })
         vim.keymap.set("n", "<leader>lr", "<cmd>VtsExec rename_file<CR>", { desc = "Rename File" })
       end,

@@ -29,17 +29,6 @@ in {
 
   plugins = with pkgs; [
     {
-      plugin = tmuxPlugins.resurrect;
-      extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-    }
-    {
-      plugin = tmuxPlugins.continuum;
-      extraConfig = ''
-        set -g @continuum-restore 'on'
-        set -g @continuum-save-interval '10' # minutes
-      '';
-    }
-    {
       plugin = labyrinth-tmux;
       extraConfig = ''
         if-shell 'uname | grep -q Darwin' 'set-option -g default-command "reattach-to-user-namespace -l zsh"'
@@ -50,6 +39,17 @@ in {
       '';
     }
     tmuxPlugins.yank
+    {
+      plugin = tmuxPlugins.resurrect;
+      extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+    }
+    {
+      plugin = tmuxPlugins.continuum;
+      extraConfig = ''
+        set -g @continuum-restore 'on'
+        set -g @continuum-save-interval '10' # minutes
+      '';
+    }
   ];
 
   extraConfig = builtins.readFile ./tmuxExtra.conf;

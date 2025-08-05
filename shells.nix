@@ -33,6 +33,7 @@
       yarn
       typescript
       vtsls
+      vscode-langservers-extracted
     ];
   };
 
@@ -44,6 +45,7 @@
       yarn
       typescript
       vtsls
+      vscode-langservers-extracted
     ];
   };
 
@@ -55,6 +57,7 @@
       yarn
       typescript
       vtsls
+      vscode-langservers-extracted
     ];
   };
 
