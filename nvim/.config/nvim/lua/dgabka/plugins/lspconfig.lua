@@ -27,6 +27,7 @@ return {
       "bashls",
       "marksman",
       "dockerls",
+      "eslint",
     }
 
     for _, server in pairs(servers) do
@@ -57,10 +58,24 @@ return {
       on_attach = function()
         vim.keymap.set("n", "<leader>lo", "<cmd>VtsExec organize_imports<CR>", { desc = "Ogranize Imports" })
         vim.keymap.set("n", "<leader>la", "<cmd>VtsExec add_missing_imports<CR>", { desc = "Add Missing Imports" })
-        vim.keymap.set("n", "<leader>lf", "<cmd>VtsExec file_references<CR>", { desc = "File References" })
         vim.keymap.set("n", "<leader>lr", "<cmd>VtsExec rename_file<CR>", { desc = "Rename File" })
       end,
     }
+
+    local base_on_attach = vim.lsp.config.eslint.on_attach
+    vim.lsp.config("eslint", {
+      on_attach = function(client, bufnr)
+        if not base_on_attach then
+          return
+        end
+
+        base_on_attach(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "LspEslintFixAll",
+        })
+      end,
+    })
 
     lspconfig.jsonls.setup {
       settings = {
@@ -112,5 +127,27 @@ return {
 
     vim.keymap.set("n", "gd", vim.lsp.buf.definition)
     vim.keymap.set("n", "gT", vim.lsp.buf.type_definition)
+    vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("my.lsp", {}),
+      callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+        -- Auto-format ("lint") on save.
+        -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+        if
+          not client:supports_method "textDocument/willSaveWaitUntil"
+          and client:supports_method "textDocument/formatting"
+        then
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("my.lsp", { clear = false }),
+            buffer = args.buf,
+            callback = function()
+              vim.lsp.buf.format { bufnr = args.buf, id = client.id, timeout_ms = 1000 }
+            end,
+          })
+        end
+      end,
+    })
   end,
 }

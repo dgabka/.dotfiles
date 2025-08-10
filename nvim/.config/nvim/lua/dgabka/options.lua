@@ -17,6 +17,8 @@ vim.opt.splitright = true
 vim.opt.autoread = true -- reload files changed outside of vim
 vim.opt.formatoptions:remove "o" -- Don't have `o` add a comment
 vim.opt.inccommand = "split"
+vim.opt.swapfile = false
+vim.opt.winborder = "rounded"
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menu,menuone,noselect"

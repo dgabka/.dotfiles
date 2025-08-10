@@ -4,20 +4,19 @@ local is_inside_work_tree = {}
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-telescope/telescope-ui-select.nvim",
     "nvim-lua/plenary.nvim",
   },
   lazy = false,
   cmd = "Telescope",
   config = function()
-    local open_with_trouble = require("trouble.sources.telescope").open
-
     require("telescope").setup {
       defaults = {
+        theme = "ivy",
         mappings = {
-          i = { ["<c-t>"] = open_with_trouble, ["<c-d>"] = require("telescope.actions").delete_buffer },
-          n = { ["<c-t>"] = open_with_trouble, ["<c-d>"] = require("telescope.actions").delete_buffer },
+          i = { ["<c-d>"] = require("telescope.actions").delete_buffer },
+          n = { ["<c-d>"] = require("telescope.actions").delete_buffer },
         },
         path_display = { "smart" },
         vimgrep_arguments = {
@@ -30,7 +29,12 @@ return {
           "--smart-case",
           "--hidden",
           "--glob=!.git/",
+          "--trim",
         },
+      },
+      pickers = {
+        find_files = { theme = "ivy" },
+        git_files = { theme = "ivy" },
       },
       extensions = {
         fzf = {
@@ -56,7 +60,7 @@ return {
       end
 
       if is_inside_work_tree[cwd] then
-        builtin.git_files()
+        builtin.git_files { show_untracked = true }
       else
         builtin.find_files()
       end

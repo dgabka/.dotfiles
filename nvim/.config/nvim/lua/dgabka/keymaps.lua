@@ -1,9 +1,5 @@
 local set = vim.keymap.set
 
--- Ctrl-C to exit insert mode
-set("i", "<C-c>", "<Esc>")
-
--- open oil
 set("n", "<leader>-", ":Oil<CR>")
 
 -- quickfix list
@@ -44,13 +40,3 @@ set("n", "<CR>", function()
     return vim.keycode "<CR>"
   end
 end, { expr = true })
-
--- Workspace diagnostics
-vim.api.nvim_set_keymap("n", "<leader>X", "", {
-  noremap = true,
-  callback = function()
-    for _, client in ipairs(vim.lsp.get_clients()) do
-      require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
-    end
-  end,
-})
