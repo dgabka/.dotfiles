@@ -1,14 +1,10 @@
-({
-  pkgs,
-  labyrinth-variant,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
-    (import ../commons {
-      inherit pkgs;
-      inherit labyrinth-variant;
-    })
+    ../commons
   ];
+
+  # optional, recommended
+  xdg.enable = true;
   home.packages = with pkgs; [
     rename
     reattach-to-user-namespace
@@ -18,4 +14,4 @@
   programs.zsh.initContent = ''
     PATH=$HOME/.docker/bin:$PATH
   '';
-})
+}

@@ -10,15 +10,17 @@
     sha256 = "sha256-K12hmXkml43eIOswo6GDrL3t52YGmt4RjBlE187M5rI=";
   };
 in {
-  enable = true;
-  settings = {
-    k9s = {
-      ui = {
-        skin = "labyrinth";
+  programs.k9s = {
+    enable = true;
+    settings = {
+      k9s = {
+        ui = {
+          skin = "labyrinth";
+        };
       };
     };
-  };
-  skins = {
-    labyrinth = "${labyrinth}/skins/labyrinth-${labyrinth-variant}.yaml";
+    skins = {
+      labyrinth = "${labyrinth}/skins/labyrinth-${labyrinth-variant}.yaml";
+    };
   };
 }

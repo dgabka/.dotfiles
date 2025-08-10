@@ -4,10 +4,8 @@
   ...
 }: {
   imports = [
-    (import ../commons {
-      inherit pkgs;
-      inherit labyrinth-variant;
-    })
+    ../commons
+    ./k9s.nix
   ];
   home.packages = with pkgs; [
     saml2aws
@@ -31,8 +29,4 @@
       fnm use $1;
     }
   '';
-  programs.k9s = import ./k9s.nix {
-    inherit pkgs;
-    inherit labyrinth-variant;
-  };
 }

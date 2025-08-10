@@ -3,6 +3,14 @@
   labyrinth-variant,
   ...
 }: {
+  imports = [
+    ./alacritty.nix
+    ./bat.nix
+    ./fzf.nix
+    ./starship.nix
+    ./tmux.nix
+    ./zsh.nix
+  ];
   home.stateVersion = "24.05";
   home.packages = with pkgs; [
     # common tools
@@ -72,14 +80,6 @@
       "--smart-case"
     ];
   };
-  programs.bat = import ./bat.nix {
-    inherit pkgs;
-    inherit labyrinth-variant;
-  };
-  programs.fzf = import ./fzf.nix {
-    inherit pkgs;
-    inherit labyrinth-variant;
-  };
   programs.git = {
     enable = true;
     aliases = {
@@ -89,19 +89,6 @@
       rb = "rebase";
     };
     extraConfig.pull.rebase = true;
-  };
-  programs.starship = import ./starship.nix;
-  programs.alacritty = import ./alacritty.nix {
-    inherit pkgs;
-    inherit labyrinth-variant;
-  };
-  programs.tmux = import ./tmux.nix {
-    inherit pkgs;
-    inherit labyrinth-variant;
-  };
-  programs.zsh = import ./zsh.nix {
-    inherit pkgs;
-    inherit labyrinth-variant;
   };
   programs.direnv = {
     enable = true;

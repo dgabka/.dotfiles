@@ -23,6 +23,3 @@ zle -N fzf-grep-widget
 bindkey '^[^F' fzf-grep-widget
 
 PATH=$HOME/.npm/bin:$PATH
-
-# tms completions
-echo "source <(COMPLETE=zsh tms)" >>~/.zshrc

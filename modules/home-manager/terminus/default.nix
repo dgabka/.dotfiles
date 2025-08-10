@@ -4,10 +4,7 @@
   ...
 }: {
   imports = [
-    (import ../commons {
-      inherit pkgs;
-      inherit labyrinth-variant;
-    })
+    ../commons
   ];
   home.packages = with pkgs; [
     rename
