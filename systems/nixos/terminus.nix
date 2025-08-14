@@ -13,7 +13,7 @@
   };
 in {
   nixosSystem = nixpkgs.lib.nixosSystem {
-    inherit system;
+    inherit system pkgs;
     modules = [
       ../../modules/terminus/configuration.nix
       home-manager.nixosModules.home-manager
