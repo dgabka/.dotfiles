@@ -17,24 +17,16 @@ return {
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    require("lspconfig.configs").vtsls = require("vtsls").lspconfig
+    vim.lsp.enable "cssls"
+    vim.lsp.enable "html"
+    vim.lsp.enable "pyright"
+    vim.lsp.enable "bashls"
+    vim.lsp.enable "marksman"
+    vim.lsp.enable "dockerls"
 
-    local lspconfig = require "lspconfig"
-    local servers = {
-      "cssls",
-      "html",
-      "pyright",
-      "bashls",
-      "marksman",
-      "dockerls",
-      "eslint",
-    }
+    vim.lsp.enable "lua_ls"
 
-    for _, server in pairs(servers) do
-      lspconfig[server].setup {}
-    end
-
-    lspconfig.vtsls.setup {
+    vim.lsp.config("vtsls", {
       settings = {
         typescript = {
           tsserver = {
@@ -60,33 +52,31 @@ return {
         vim.keymap.set("n", "<leader>la", "<cmd>VtsExec add_missing_imports<CR>", { desc = "Add Missing Imports" })
         vim.keymap.set("n", "<leader>lr", "<cmd>VtsExec rename_file<CR>", { desc = "Rename File" })
       end,
-    }
-
-    local base_on_attach = vim.lsp.config.eslint.on_attach
-    vim.lsp.config("eslint", {
-      on_attach = function(client, bufnr)
-        if not base_on_attach then
-          return
-        end
-
-        base_on_attach(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = bufnr,
-          command = "LspEslintFixAll",
-        })
-      end,
     })
+    vim.lsp.enable "vtsls"
 
-    lspconfig.jsonls.setup {
+    vim.lsp.config("eslint", {
+      ---@diagnostic disable-next-line: unused-local
+      -- on_attach = function(client, bufnr)
+      --   -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   --   buffer = bufnr,
+      --   --   command = "EslintFixAll",
+      --   -- })
+      -- end,
+    })
+    vim.lsp.enable "eslint"
+
+    vim.lsp.config("jsonls", {
       settings = {
         json = {
           schemas = require("schemastore").json.schemas(),
           validate = { enable = true },
         },
       },
-    }
+    })
+    vim.lsp.enable "jsonls"
 
-    lspconfig.yamlls.setup {
+    vim.lsp.config("yamlls", {
       settings = {
         yaml = {
           schemaStore = { enable = true },
@@ -102,9 +92,10 @@ return {
           },
         },
       },
-    }
+    })
+    vim.lsp.enable "yamlls"
 
-    lspconfig.nil_ls.setup {
+    vim.lsp.config("nil_ls", {
       settings = {
         ["nil"] = {
           formatting = {
@@ -112,29 +103,19 @@ return {
           },
         },
       },
-    }
-
-    lspconfig.lua_ls.setup {
-      settings = {
-        Lua = {
-          diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = { "vim" },
-          },
-        },
-      },
-    }
+    })
+    vim.lsp.enable "nil_ls"
 
     vim.keymap.set("n", "gd", vim.lsp.buf.definition)
     vim.keymap.set("n", "gT", vim.lsp.buf.type_definition)
     vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+
+    -- format on save
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("my.lsp", {}),
       callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-        -- Auto-format ("lint") on save.
-        -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
         if
           not client:supports_method "textDocument/willSaveWaitUntil"
           and client:supports_method "textDocument/formatting"
