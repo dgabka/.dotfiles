@@ -23,6 +23,7 @@ return {
     vim.lsp.enable "bashls"
     vim.lsp.enable "marksman"
     vim.lsp.enable "dockerls"
+    vim.lsp.enable "eslint"
 
     vim.lsp.enable "lua_ls"
 
@@ -54,17 +55,6 @@ return {
       end,
     })
     vim.lsp.enable "vtsls"
-
-    vim.lsp.config("eslint", {
-      ---@diagnostic disable-next-line: unused-local
-      -- on_attach = function(client, bufnr)
-      --   -- vim.api.nvim_create_autocmd("BufWritePre", {
-      --   --   buffer = bufnr,
-      --   --   command = "EslintFixAll",
-      --   -- })
-      -- end,
-    })
-    vim.lsp.enable "eslint"
 
     vim.lsp.config("jsonls", {
       settings = {
