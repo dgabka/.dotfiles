@@ -1,6 +1,5 @@
 ({
   pkgs,
-  labyrinth-variant,
   ...
 }: {
   imports = [

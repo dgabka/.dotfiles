@@ -13,7 +13,7 @@
   };
 in {
   nixosSystem = nixpkgs.lib.nixosSystem {
-    inherit system pkgs;
+    inherit system;
     modules = [
       ../../modules/terminus/configuration.nix
       home-manager.nixosModules.home-manager
@@ -21,9 +21,9 @@ in {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.dgabka = import ../../modules/home-manager/terminus {
-          inherit pkgs;
-          inherit labyrinth-variant;
+    inherit labyrinth-variant pkgs;
         };
+        home-manager.extraSpecialArgs = {inherit labyrinth-variant;};
       }
     ];
   };
