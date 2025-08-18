@@ -1,6 +1,7 @@
 {
   pkgs,
   labyrinth-variant,
+  config,
   ...
 }: {
   imports = [
@@ -28,5 +29,7 @@
       eval $(fnm env);
       fnm use $1;
     }
+
+    SSL_CERT_FILE=${config.home.homeDirectory}/CertificateChain.pem
   '';
 }
