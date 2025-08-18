@@ -69,6 +69,7 @@
       yarn
       typescript
       vtsls
+      vscode-langservers-extracted
     ];
   };
 }

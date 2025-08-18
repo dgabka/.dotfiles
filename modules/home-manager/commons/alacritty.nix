@@ -1,6 +1,7 @@
 {
   pkgs,
   labyrinth-variant,
+  config,
   ...
 }: let
   labyrinth = pkgs.fetchFromGitHub {
@@ -51,7 +52,8 @@ in {
       };
 
       general.import = [
-        "${labyrinth}/dist/labyrinth-${labyrinth-variant}.toml"
+        # "${labyrinth}/dist/labyrinth-${labyrinth-variant}.toml"
+        "${config.home.homeDirectory}/repos/sageveil/dist/packages/ports/alacritty/sageveil.toml"
       ];
     };
   };

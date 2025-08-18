@@ -23,3 +23,5 @@ zle -N fzf-grep-widget
 bindkey '^[^F' fzf-grep-widget
 
 PATH=$HOME/.npm/bin:$PATH
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=blue"

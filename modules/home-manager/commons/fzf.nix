@@ -1,6 +1,6 @@
 {
   pkgs,
-  labyrinth-variant,
+  config,
   ...
 }: let
   theme = pkgs.fetchFromGitHub {
@@ -41,6 +41,7 @@ in {
       "--no-scrollbar"
     ];
     tmux.enableShellIntegration = true;
-    colors = import "${theme}/dist/labyrinth-${labyrinth-variant}.nix";
+    # colors = import "${theme}/dist/labyrinth-${labyrinth-variant}.nix";
+    colors = import "${config.home.homeDirectory}/repos/sageveil/dist/packages/ports/fzf/sageveil.nix";
   };
 }
