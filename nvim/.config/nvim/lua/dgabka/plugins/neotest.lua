@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   "nvim-neotest/neotest",
   dependencies = {
@@ -7,6 +9,12 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "marilari88/neotest-vitest",
   },
+
+  keys = {
+    { "<leader>tn", ":Neotest run<CR>", desc = "Neotest run nearest" },
+    { "<leader>tf", ":Neotest run file<CR>", desc = "Neotest run file" },
+  },
+
   config = function()
     require("neotest").setup {
       adapters = {
@@ -14,12 +22,6 @@ return {
       },
     }
 
-    vim.keymap.set("n", "<leader>tn", function()
-      require("neotest").run.run()
-    end, { desc = "Run Nearest Test" })
-    vim.keymap.set("n", "<leader>tf", function()
-      require("neotest").run.run(vim.fn.expand "%")
-    end, { desc = "Run File" })
     vim.keymap.set("n", "<leader>ts", function()
       require("neotest").run.stop()
     end, { desc = "Stop Test" })
@@ -29,8 +31,5 @@ return {
     vim.keymap.set("n", "<leader>tsu", function()
       require("neotest").summary.toggle()
     end, { desc = "Toggle Summary" })
-    vim.keymap.set("n", "<leader>tw", function()
-      require("neotest").watch.toggle(vim.fn.expand "%")
-    end, { desc = "Toggle watch mode" })
   end,
 }

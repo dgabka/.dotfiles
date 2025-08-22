@@ -1,6 +1,8 @@
 -- We cache the results of "git rev-parse"
 local is_inside_work_tree = {}
 
+---@module "lazy"
+---@type LazySpec
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
@@ -13,6 +15,8 @@ return {
   config = function()
     require("telescope").setup {
       defaults = {
+        prompt_prefix = "❯ ",
+        selection_caret = "❯ ",
         theme = "ivy",
         mappings = {
           i = { ["<c-d>"] = require("telescope.actions").delete_buffer },

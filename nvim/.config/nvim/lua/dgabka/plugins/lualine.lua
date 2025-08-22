@@ -9,8 +9,11 @@ local function diff_source()
   end
 end
 
+---@module "lazy"
+---@type LazySpec
 return {
   "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
   opts = {
     options = {
       theme = "sageveil-alt",

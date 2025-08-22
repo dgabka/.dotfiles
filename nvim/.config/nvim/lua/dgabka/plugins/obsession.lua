@@ -1,4 +1,6 @@
+---@module "lazy"
+---@type LazySpec
 return {
-    "tpope/vim-obsession",
-    event = "BufEnter",
+  "tpope/vim-obsession",
+  event = "BufEnter",
 }

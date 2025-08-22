@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   {
     -- "dgabka/labyrinth-nvim",
@@ -5,7 +7,6 @@ return {
     name = "sageveil",
     priority = 1000,
     config = function()
-      local variant = os.getenv "LABYRINTH_VARIANT" or "mist"
       require("sageveil").setup {
         styles = {
           italic = false,

@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
@@ -27,11 +29,13 @@ return {
       bash = { "shfmt" },
       zsh = { "shfmt" },
     },
-    formatters = { yamlfmt = {
-      options = {
-        retain_line_breaks = true,
+    formatters = {
+      yamlfmt = {
+        options = {
+          retain_line_breaks = true,
+        },
       },
-    } },
+    },
     format_on_save = function(bufnr)
       local ignore_filetypes = { "oil" }
       if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then

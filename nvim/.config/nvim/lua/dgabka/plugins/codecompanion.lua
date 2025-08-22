@@ -39,12 +39,15 @@ end
 
 local fmt = string.format
 
+---@module "lazy"
+---@type LazySpec
 return {
   "olimorris/codecompanion.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
   },
+  cmd = { "CodeCompanionChat", "CodeCompanionActions", "CodeCompanion" },
   opts = {
     strategies = get_adapters(),
     adapters = {
